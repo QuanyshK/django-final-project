@@ -1,0 +1,28 @@
+{# users/profile.html #}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Profile</h1>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ client.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ client.last_name }}</p>
+    <p><strong>City:</strong> {{ client.city }}</p>
+    <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
+
+    <h2>Children</h2>
+    <ul>
+        {% for child in children %}
+            <li>{{ child.first_name }} {{ child.last_name }} - {{ child.birth_date }} ({{ child.gender }})</li>
+        {% empty %}
+            <li>No children added yet.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'add_child' %}" class="btn btn-success">Add Child</a></p>
+    <p><a href="{% url 'update_profile' %}" class="btn btn-warning">Edit Profile</a></p>
+    <p><a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></p>
+</div>
+{% endblock %}

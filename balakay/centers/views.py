@@ -3,48 +3,42 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Section, Center, Schedule, Category, Booking
 from .forms import BookingForm
-
-
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
 
 def home_view(request):
     categories = Category.objects.prefetch_related('sections').all()
-    return render(request, 'home.html', {'categories': categories})
+    return render(request, 'centers/home.html', {'categories': categories})
 
 def section_view(request, id):
-    section = Section.objects.get(id=id)
+    section = get_object_or_404(Section, id=id)  
     schedules = Schedule.objects.filter(section=section)
-    return render(request, 'section.html', {"section": section, "schedules": schedules})
-
+    return render(request, 'centers/section.html', {"section": section, "schedules": schedules})
 
 def book_schedule_view(request, schedule_id):
     schedule = get_object_or_404(Schedule, id=schedule_id)
 
     if request.method == 'POST':
-        form = BookingForm(request.POST)
+        form = BookingForm(request.POST, user=request.user)  
         if form.is_valid():
             booking = form.save(commit=False)
             booking.schedule = schedule
             booking.user = request.user
+            booking.child = form.cleaned_data['child']  
             booking.save()
+            schedule.total_slots -= 1
+            schedule.save()  
             return redirect(reverse('booking_success'))
     else:
-        form = BookingForm()
+        form = BookingForm(user=request.user) 
 
-    return render(request, 'book_schedule.html', {'form': form, 'schedule': schedule})
+    return render(request, 'centers/book_schedule.html', {'form': form, 'schedule': schedule})
 
 def booking_success_view(request):
-    return render(request, 'booking_success.html')
+    return render(request, 'centers/booking_success.html')
 
 
-def my_bookings_view(request):
-    # Assuming 'parent_phone' or similar can be used to identify the current user (adjust according to your auth system)
-    parent_phone = request.user.profile.phone_number  # Adjust this to match your user data
-    
-    active_bookings = Booking.objects.filter(parent_phone=parent_phone, status__in=[Booking.PENDING, Booking.CONFIRMED])
-
-    return render(request, 'my_schedule.html', {'active_bookings': active_bookings})
 
 def cancel_booking_view(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
@@ -55,3 +49,19 @@ def cancel_booking_view(request, booking_id):
         booking.save()
 
     return redirect('my-schedule')
+
+def center_list_view(request):
+    query = request.GET.get('q', '')  
+
+    centers = Center.objects.all() 
+    if query:
+        centers = centers.filter(Q(name__icontains=query) | Q(id__icontains=query))
+
+    return render(request, 'centers/center_list.html', {
+        'centers': centers,
+        'query': query,   
+    })
+@login_required
+def user_bookings(request):
+    bookings = Booking.objects.filter(user=request.user).select_related('schedule')
+    return render(request, 'centers/my_schedule.html', {'bookings': bookings})

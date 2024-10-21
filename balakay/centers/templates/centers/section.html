@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-dark">Section: {{ section.name }}</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="h5">Details</h2>
+            <p><strong>Category:</strong> {{ section.category.name }}</p>
+            <p><strong>Center:</strong> {{ section.center.name }}</p>
+            <p><strong>Description:</strong> {{ section.description }}</p>
+            <p><strong>Duration:</strong> {{ section.duration_minutes }} minutes</p>
+            <p><strong>Age Range:</strong> {{ section.min_age }} - {{ section.max_age }} years</p>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="h5">Schedules</h2>
+        {% if schedules %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Total Slots</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for schedule in schedules %}
+                        <tr>
+                            <td>{{ schedule.start_time }}</td>
+                            <td>{{ schedule.end_time }}</td>
+                            <td>{{ schedule.total_slots }}</td>
+                            <td>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'book_schedule' schedule.id %}" class="btn btn-primary">Book</a>
+                                {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-primary">Book</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-muted">No schedules available for this section.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

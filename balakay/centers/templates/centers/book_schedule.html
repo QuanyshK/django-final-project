@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-success">Book Schedule: {{ schedule.section.name }}</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Schedule Details</h2>
+            <p><strong>Start Time:</strong> {{ schedule.start_time }}</p>
+            <p><strong>End Time:</strong> {{ schedule.end_time }}</p>
+            <p><strong>Total Slots:</strong> {{ schedule.total_slots }}</p>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="h5">Parent Details</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

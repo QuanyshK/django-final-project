@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
@@ -53,7 +53,8 @@ class Booking(models.Model):
         (CONFIRMED, 'Confirmed'),
         (CANCELLED, 'Cancelled'),
      ]
-    # user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    client = models.OneToOneField('users.Client', on_delete=models.CASCADE,null=True, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)  
     parent_name = models.CharField(max_length=255) 
     parent_phone = models.CharField(max_length=20)  

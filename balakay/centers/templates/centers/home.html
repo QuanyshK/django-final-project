@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% block content %}
+<div class="container mt-5">
+    <h1>Sections by Categories</h1>
+
+    {% for category in categories %}
+        <h2>{{ category.name }}</h2>
+
+        {% if category.sections.all %}
+            <div class="carousel-container">
+                <div class="d-flex overflow-auto">
+                    {% for section in category.sections.all %}
+                        <div class="card mx-2" style="width: 250px;">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="section/{{ section.id }}">{{ section.name }}</a></h5>
+                                <p class="card-text">{{ section.description }}</p>
+                                <p>Age: {{ section.min_age }} - {{ section.max_age }}</p>
+                                <p>Duration: {{ section.duration_minutes }} minutes</p>
+                                <p>Center: <a href="#">{{ section.center }}</a></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p>No sections available in this category.</p>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

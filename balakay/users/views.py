@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserLoginForm, ClientRegistrationForm,UserUpdateForm,ClientUpdateForm
-from .models import User,Client
+from .forms import ChildForm, UserLoginForm, ClientRegistrationForm, UserUpdateForm, ClientUpdateForm
+from .models import User, Client, Child
 from django.contrib.auth.decorators import login_required
 
 
@@ -12,36 +12,34 @@ def register_client(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Registration successful!')
-            return redirect('login')  # Redirect to a login page after successful registration
+            return redirect('login') 
     else:
         form = ClientRegistrationForm()
     
-    return render(request, 'register.html', {'form': form})
-
+    return render(request, 'users/register.html', {'form': form})
 
 
 def login_user(request):
     if request.method == 'POST':
-        form = UserLoginForm(request, data=request.POST)  # Pass request to the form
+        form = UserLoginForm(request, data=request.POST)
         if form.is_valid():
-            # Get the authenticated user
             user = form.get_user()
             login(request, user) 
-            return redirect('/')  # Redirect to home or another page after login
+            return redirect('profile')  
         else:
             messages.error(request, 'Invalid username or password.')
     else:
         form = UserLoginForm(request)
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'users/login.html', {'form': form})  
 
 def logout_user(request):
     logout(request)
     return redirect('login')
 
-@login_required
 def profile_view(request):
-    client = request.user.client 
-    return render(request, 'profile.html', {'client': client})
+    client = Client.objects.get(user=request.user)
+    children = Child.objects.filter(parent=client)
+    return render(request, 'users/profile.html', {'user': request.user, 'client': client, 'children': children})
 
 
 @login_required
@@ -55,7 +53,7 @@ def update_profile(request):
         if user_form.is_valid() and client_form.is_valid():
             user_form.save()
             client_form.save()
-            return redirect('profile')  # Redirect to profile page after successful update
+            return redirect('profile') 
     else:
         user_form = UserUpdateForm(instance=user)
         client_form = ClientUpdateForm(instance=client)
@@ -64,4 +62,19 @@ def update_profile(request):
         'user_form': user_form,
         'client_form': client_form,
     }
-    return render(request, 'update_profile.html', context)
+    return render(request, 'users/update_profile.html', context)  
+
+
+
+def add_child_view(request):
+    if request.method == 'POST':
+        form = ChildForm(request.POST)
+        if form.is_valid():
+            child = form.save(commit=False)
+            child.parent = Client.objects.get(user=request.user)
+            child.save()
+            return redirect('profile') 
+    else:
+        form = ChildForm()
+    
+    return render(request, 'users/add_child.html', {'form': form})
