@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-
-<h1>Profile</h1>
-
+    <div style="font-family: Arial, sans-serif; margin: 20px;">
+        <h1>Profile</h1>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ client.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ client.last_name }}</p>
+        <p><strong>City:</strong> {{ client.city }}</p>
+        <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
+        <p><a href="{% url 'update_profile' %}">Edit Profile</a></p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+    </div>
 {% endblock %}
