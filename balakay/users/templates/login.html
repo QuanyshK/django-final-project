@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="display:flex; flex-direction:column; justify-items:center">
     <h2>Login</h2>
     <h2>Welcome Back</h2>
     <form method="POST">
@@ -14,5 +10,5 @@
         <button type="submit">Login</button>
         <p>Do not have account? <a href="/users/register">Register</a></p>
     </form>
-</body>
-</html>
+    </div>
+{% endblock %}

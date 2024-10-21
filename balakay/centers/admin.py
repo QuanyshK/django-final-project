@@ -8,5 +8,6 @@ admin.site.register(Center)
 admin.site.register(Section)
 admin.site.register(Schedule)
 admin.site.register(Booking)
+admin.site.register(Category)
 
 

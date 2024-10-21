@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="font-family: Arial, sans-serif; margin: 20px;">
+    <h1 style="color: #333;">Section: {{ section.name }}</h1>
+    
+    <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; max-width: 600px;">
+        <h2 style="color: #444;">Details</h2>
+        <p style="margin: 0;"><strong>Category:</strong> {{ section.category.name }}</p>
+        <p style="margin: 0;"><strong>Center:</strong> {{ section.center.name }}</p>
+        <p style="margin: 0;"><strong>Description:</strong> {{ section.description }}</p>
+        <p style="margin: 0;"><strong>Duration:</strong> {{ section.duration_minutes }} minutes</p>
+        <p style="margin: 0;"><strong>Age Range:</strong> {{ section.min_age }} - {{ section.max_age }} years</p>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <h2 style="color: #444;">Schedules</h2>
+        {% if schedules %}
+            <table style="border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="background-color: #f4f4f4; text-align: left;">
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">Start Time</th>
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">End Time</th>
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;">Total Slots</th>
+                        <th style="padding: 10px; border-bottom: 1px solid #ddd;"></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for schedule in schedules %}
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ schedule.start_time }}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ schedule.end_time }}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ schedule.total_slots }}</td>
+                            <td style="cursor:pointer; padding: 10px; border-bottom: 1px solid #ddd; background-color:cornflowerblue;">
+                                <a href="{% url 'book_schedule' schedule.id %}" style="color: white; text-decoration: none;">Book</a>
+                            </td>  </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="color: #888;">No schedules available for this section.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
