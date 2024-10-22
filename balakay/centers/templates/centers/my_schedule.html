@@ -11,6 +11,7 @@
                     <th>Section</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                         <td>{{ booking.schedule.section.name }}</td>
                         <td>{{ booking.schedule.start_time }}</td>
                         <td>{{ booking.schedule.end_time }}</td>
+                        <td><a href="{% url 'booking_detail' booking.id %}" class="btn btn-info">Details</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

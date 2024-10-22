@@ -10,4 +10,6 @@ urlpatterns = [
     path('cancel-booking/<int:booking_id>/', cancel_booking_view, name='cancel_booking'),
     path('centers/', center_list_view, name='center_list'), 
     path('user/bookings/', user_bookings, name='user_bookings'),
+    path('center/<int:center_id>/', center_details, name='center_details'),
+    path('booking/<int:booking_id>/', booking_detail, name='booking_detail'),
 ]

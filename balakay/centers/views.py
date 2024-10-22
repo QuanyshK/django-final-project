@@ -5,6 +5,7 @@ from .models import Section, Center, Schedule, Category, Booking
 from .forms import BookingForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 # Create your views here.
 
 def home_view(request):
@@ -61,7 +62,32 @@ def center_list_view(request):
         'centers': centers,
         'query': query,   
     })
+    
 @login_required
 def user_bookings(request):
     bookings = Booking.objects.filter(user=request.user).select_related('schedule')
     return render(request, 'centers/my_schedule.html', {'bookings': bookings})
+
+def center_details(request, center_id):
+    center = get_object_or_404(Center, id=center_id)
+    schedules = Schedule.objects.filter(section__center=center)
+    
+    return render(request, 'centers/center_details.html', {'center': center, 'schedules': schedules})
+
+
+def booking_detail(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'confirm':
+            booking.status = Booking.CONFIRMED
+            booking.confirmed_at = timezone.now()
+        elif action == 'cancel':
+            booking.status = Booking.CANCELLED
+            booking.cancelled_at = timezone.now()
+        
+        booking.save()
+        return redirect(reverse('booking_detail', args=[booking.id]))
+
+    return render(request, 'centers/booking_detail.html', {'booking': booking})

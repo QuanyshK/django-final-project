@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Booking Details for {{ booking.child_name }}</h1>
+    
+    <p><strong>Status:</strong> {{ booking.get_status_display }}</p>
+    <p><strong>Schedule:</strong> {{ booking.schedule.section.name }} - {{ booking.schedule.start_time }} to {{ booking.schedule.end_time }}</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {% if booking.status == 'pending' %}
+            <button type="submit" name="action" value="confirm" class="btn btn-success">Confirm</button>
+            <button type="submit" name="action" value="cancel" class="btn btn-danger">Cancel</button>
+        {% else %}
+            <p>This booking is {{ booking.get_status_display }}.</p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
