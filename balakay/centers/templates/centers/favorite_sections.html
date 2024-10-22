@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-dark">My Favorite Sections</h1>
+
+    <ul>
+        {% for favorite in favorite_sections %}
+            <li>
+                <a href="{% url 'section' favorite.section.id %}">{{ favorite.section.name }}</a>
+            </li>
+        {% empty %}
+            <li>No favorite sections yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

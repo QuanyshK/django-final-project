@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from users.models import Client
 # Create your models here.
 
 class Category(models.Model):
@@ -66,3 +67,15 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.child_name} | {self.schedule.section.name} | {self.status}"
 
+
+
+class FavoriteSection(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Ссылка на клиента
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)  # Ссылка на секцию
+    added_at = models.DateTimeField(auto_now_add=True)  # Время добавления в избранное
+
+    class Meta:
+        unique_together = ('client', 'section')  # Один клиент не может добавить одну и ту же секцию дважды
+
+    def __str__(self):
+        return f"{self.client.user.username} | {self.section.name}"

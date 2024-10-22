@@ -9,5 +9,5 @@ admin.site.register(Section)
 admin.site.register(Schedule)
 admin.site.register(Booking)
 admin.site.register(Category)
-
+admin.site.register(FavoriteSection)
 

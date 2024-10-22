@@ -14,6 +14,18 @@
             <p><strong>Age Range:</strong> {{ section.min_age }} - {{ section.max_age }} years</p>
         </div>
     </div>
+  <div class="favorite-section">
+        {% if user.is_authenticated %}
+            {% if section in user.client.favoritesection_set.all %}
+                <a href="{% url 'remove_favorite_section' section.id %}" class="btn btn-danger">Remove from Favorites</a>
+            {% else %}
+                <a href="{% url 'add_favorite_section' section.id %}" class="btn btn-primary">Add to Favorites</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login to add to Favorites</a>
+        {% endif %}
+    </div>
+
 
     <div>
         <h2 class="h5">Schedules</h2>
