@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-    <!-- Header Section -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/home">Balakay</a>
@@ -41,15 +39,10 @@
         </nav>
     </header>
     <hr>
-
-    <!-- Main Content Section -->
     <main class="container" style="min-height:500px;">
         {% block content %}
-        <!-- This is where the content of child templates will be injected -->
         {% endblock %}
     </main>
-
-    <!-- Footer Section -->
     <footer class="bg-light text-center py-3">
         <div class="container">
             <p class="mb-0">&copy; 2024 Balakay. All rights reserved.</p>
