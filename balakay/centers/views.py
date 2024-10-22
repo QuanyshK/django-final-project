@@ -99,7 +99,6 @@ def add_favorite_section(request, id):
     section = get_object_or_404(Section, id=id)
     client = request.user.client
 
-    # Проверяем, не добавлена ли уже эта секция в избранное
     favorite, created = FavoriteSection.objects.get_or_create(client=client, section=section)
 
     if created:
@@ -107,7 +106,7 @@ def add_favorite_section(request, id):
     else:
         message = "Section is already in favorites."
 
-    return redirect('section', id=id)  # Возвращаем на страницу секции
+    return redirect('section', id=id)
 
 
 @login_required
@@ -115,12 +114,11 @@ def remove_favorite_section(request, id):
     section = get_object_or_404(Section, id=id)
     client = request.user.client
 
-    # Удаляем секцию из избранного
     FavoriteSection.objects.filter(client=client, section=section).delete()
 
     message = "Section removed from favorites."
 
-    return redirect('section', id=id)  # Возвращаем на страницу секции
+    return redirect('section', id=id)
 
 
 @login_required
