@@ -70,12 +70,12 @@ class Booking(models.Model):
 
 
 class FavoriteSection(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)  # Ссылка на клиента
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)  # Ссылка на секцию
-    added_at = models.DateTimeField(auto_now_add=True)  # Время добавления в избранное
+    client = models.ForeignKey(Client, on_delete=models.CASCADE) 
+    section = models.ForeignKey(Section, on_delete=models.CASCADE) 
+    added_at = models.DateTimeField(auto_now_add=True)  
 
     class Meta:
-        unique_together = ('client', 'section')  # Один клиент не может добавить одну и ту же секцию дважды
+        unique_together = ('client', 'section')  
 
     def __str__(self):
         return f"{self.client.user.username} | {self.section.name}"
