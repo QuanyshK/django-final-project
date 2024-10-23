@@ -1,82 +1,128 @@
-Balakay: Parent and Child Activity Management System
-Balakay is a Django-based web application designed for parents to manage their profiles, children's information, and recreational activity subscriptions. It allows users to register, log in, manage their children's details, book activities, and track subscriptions. The platform is built to simplify managing schedules, bookings, and activities for parents and recreational centers.
+Balakay
+
+Balakay is a Django-based web application designed for parents to manage their profiles, children’s information, and recreational activity subscriptions. With a user-friendly interface, Balakay simplifies scheduling, booking, and tracking activities for parents and recreational centers. The platform provides a seamless experience for managing both parent and child profiles, as well as activity subscriptions.
+Table of Contents
+
+    Introduction
+    Features
+    Project Structure
+    Getting Started
+        Prerequisites
+        Installation
+    Usage
+    Built With
+    Authors
+
+Introduction
+
+Balakay offers a comprehensive solution for parents to manage their children’s activity subscriptions and bookings. It provides an efficient way to handle recreational schedules, browse available centers, and track bookings. Administrators can also leverage Django's built-in admin interface to manage users, subscriptions, and activities.
+Core Modules:
+
+    Users Management: Parents can register, log in, and update their profiles.
+    Child Management: Parents can add and manage children's information, including name, birthdate, and gender.
+    Activity Subscription and Booking: Subscribe to activities for children, book schedules, and track usage.
+    Admin Interface: Manage users, subscriptions, and activities with Django's admin tools.
 
 Features
-User Registration and Authentication: Parents can sign up, log in, and update their profiles.
-Child Management: Parents can add and manage their children's information (name, birthdate, gender).
-Activity Subscription: Parents can subscribe to activities for their children, track usage, and monitor subscription details.
-Booking System: Users can browse centers, book schedules, and view their bookings.
-Admin Interface: Django's admin interface is available for managing users, subscriptions, and activities.
+
+    User Registration and Authentication: Parents can sign up, log in, update their profiles, and manage child-related activities.
+    Child Management: Parents can easily manage their children's information (name, birthdate, gender).
+    Activity Subscription: Subscribe to children's recreational activities, track usage, and manage subscription details.
+    Booking System: Browse available centers, book activities, and manage bookings.
+    Admin Control: Full admin control over users, subscriptions, and center schedules via the Django admin interface.
+
 Project Structure
 1. Users Application
-The Users Application handles user management, including:
 
-Models: Client, Child, UserSubscription.
-Views:
-register_client: Handles user registration.
-login_user: User login view.
-logout_user: Logs the user out.
-profile_view: Displays the user's profile.
-update_profile: Allows users to update their profile information.
-add_child_view: Handles adding children to a user's profile.
-Forms:
-ClientRegistrationForm: Used for user registration.
-UserLoginForm: Handles user authentication.
-UserUpdateForm: Updates user information.
-ClientUpdateForm: Updates client (parent) details.
-ChildForm: Adds a child to a parent's profile.
-2. Subscriptions Application
-The Subscriptions Application manages activity subscriptions:
-
-Model: Subscription.
-Fields:
-name: Name of the subscription.
-price: Price of the subscription.
-active: Active status of the subscription.
-duration: Length of the subscription.
-age_group: Target age group for the subscription.
-3. Centers Application
-The Centers Application manages recreational centers, schedules, and bookings:
-
+This application handles user management, including client registration, login, profile management, and child information.
 Models:
-Center: Represents a recreational center.
-Section: Subdivisions of a center.
-Category: Categories of activities.
-Schedule: Timetables for activities.
-Booking: User bookings for activities.
+
+    Client: Parent profiles.
+    Child: Stores children’s data.
+    UserSubscription: Manages activity subscriptions for users.
+
 Views:
-home_view: Displays the homepage with categories.
-section_view: Displays details of a specific section and its schedules.
-book_schedule_view: Handles booking a schedule for a child.
-booking_success_view: Displays a success message after booking.
-center_list_view: Displays a searchable list of centers.
-center_details: Shows center details and its schedules.
-user_bookings: Displays a list of bookings made by the user.
-cancel_booking_view: Handles booking cancellations.
-booking_detail: Displays and manages details of a specific booking.
-Form:
-BookingForm: Used for booking activities for children.
+
+    register_client: Handles user registration.
+    login_user: User login view.
+    logout_user: Logs the user out.
+    profile_view: Displays user profiles.
+    add_child_view: Manages children’s data.
+
+Forms:
+
+    ClientRegistrationForm: For new user registration.
+    ChildForm: Allows parents to add children to their profiles.
+
+2. Subscriptions Application
+
+This handles subscription management for activities.
+Model:
+
+    Subscription: Stores details about subscription packages (name, price, duration, age group).
+
+3. Centers Application
+
+This module manages centers, schedules, and activity bookings.
+Models:
+
+    Center: Represents recreational centers.
+    Section: Subdivisions of centers.
+    Category: Types of activities.
+    Schedule: Holds activity schedules.
+    Booking: Manages user bookings.
+
+Views:
+
+    home_view: Displays the homepage with available categories.
+    section_view: Shows details about a center's sections.
+    book_schedule_view: Handles activity bookings.
+    center_list_view: Lists available centers.
+    user_bookings: Displays bookings made by the user.
+
+Getting Started
+Prerequisites
+
+    Python 3.8+
+    Django 5.0+
+
 Installation
-Clone the repository:
-bash
-Копировать код
+
+    Clone the repository:
+
+    bash
+
 git clone https://github.com/yourusername/balakay.git
-Install dependencies:
+
+Install the required dependencies:
+
 bash
-Копировать код
+
 pip install -r requirements.txt
-Apply migrations:
+
+Apply database migrations:
+
 bash
-Копировать код
+
 python manage.py migrate
-Run the server:
+
+Run the development server:
+
 bash
-Копировать код
-python manage.py runserver
+
+    python manage.py runserver
+
 Usage
-Register: Create a parent account.
-Add Children: After registration, log in and add details for your children.
-Browse Centers: Search through available centers and their activity schedules.
-Book Activities: Choose an activity and book a schedule for your child.
-Manage Profile: Update your profile or child details as needed.
-Track Subscriptions: View and track your child’s activity subscriptions and usage.
+
+    Register: Create a parent account.
+    Add Children: After logging in, add your children's details.
+    Browse Centers: Explore the list of available centers and their schedules.
+    Book Activities: Select activities and book schedules for your children.
+    Manage Profile: Update your profile or child’s information anytime.
+    Track Subscriptions: View and track activity subscriptions and their usage.
+
+Built With
+
+    Django — The web framework for rapid development.
+    Bootstrap — For responsive design.
+    HTML/CSS — Frontend development.
