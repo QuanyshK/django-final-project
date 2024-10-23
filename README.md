@@ -1,4 +1,4 @@
-Balakay
+#Balakay
 
 Balakay is a Django-based web application designed for parents to manage their profiles, children’s information, and recreational activity subscriptions. With a user-friendly interface, Balakay simplifies scheduling, booking, and tracking activities for parents and recreational centers. The platform provides a seamless experience for managing both parent and child profiles, as well as activity subscriptions.
 Table of Contents
@@ -83,34 +83,8 @@ Views:
 Getting Started
 Prerequisites
 
-    Python 3.8+
+    Python 3.12+
     Django 5.0+
-
-Installation
-
-    Clone the repository:
-
-    bash
-
-git clone https://github.com/yourusername/balakay.git
-
-Install the required dependencies:
-
-bash
-
-pip install -r requirements.txt
-
-Apply database migrations:
-
-bash
-
-python manage.py migrate
-
-Run the development server:
-
-bash
-
-    python manage.py runserver
 
 Usage
 
@@ -125,4 +99,4 @@ Built With
 
     Django — The web framework for rapid development.
     Bootstrap — For responsive design.
-    HTML/CSS — Frontend development.
+    HTML — Frontend development.
