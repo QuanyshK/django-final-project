@@ -21,17 +21,24 @@ def section_view(request, id):
 def book_schedule_view(request, schedule_id):
     schedule = get_object_or_404(Schedule, id=schedule_id)
 
+    # Check if the user has already booked this schedule for any of their children
+    existing_bookings = Booking.objects.filter(schedule=schedule, user=request.user)
+
     if request.method == 'POST':
         form = BookingForm(request.POST, user=request.user)
+        
         if form.is_valid():
-            booking = form.save(commit=False)
-            booking.schedule = schedule
-            booking.user = request.user
-            booking.child = form.cleaned_data['child']
-            booking.save()
-            schedule.total_slots -= 1
-            schedule.save()
-            return redirect(reverse('booking_success'))
+            if existing_bookings.filter(user=request.user).exists():
+                form.add_error(None, 'You have already booked this schedule for this child.')
+            else:
+                booking = form.save(commit=False)
+                booking.schedule = schedule
+                booking.user = request.user
+                booking.save()
+                schedule.total_slots -= 1
+                schedule.save()
+
+                return redirect(reverse('booking_success'))
     else:
         form = BookingForm(user=request.user)
 
