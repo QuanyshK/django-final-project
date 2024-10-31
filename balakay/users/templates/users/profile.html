@@ -1,5 +1,3 @@
-{# users/profile.html #}
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -20,6 +18,16 @@
             <li>No children added yet.</li>
         {% endfor %}
     </ul>
+
+    <h2>Active Subscriptions</h2>
+    <ul>
+        {% for subscription in active_subscriptions %}
+            <li>{{ subscription.subscription_type }} - {{ subscription.activation_date }} to {{ subscription.expiration_date }}</li>
+        {% empty %}
+            <li>No active subscriptions.</li>
+        {% endfor %}
+    </ul>
+    
 
     <p><a href="{% url 'add_child' %}" class="btn btn-success">Add Child</a></p>
     <p><a href="{% url 'update_profile' %}" class="btn btn-warning">Edit Profile</a></p>

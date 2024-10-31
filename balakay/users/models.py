@@ -30,7 +30,8 @@ class UserSubscription(models.Model):
     expiration_date = models.DateTimeField()  
     total_days = models.PositiveIntegerField() 
     freeze_days = models.PositiveIntegerField() 
-    remaining_freeze_days = models.PositiveIntegerField() 
+    remaining_freeze_days = models.PositiveIntegerField()
+    is_active = models.BooleanField(default=True) 
 
     def __str__(self):
         return f"{self.child.first_name} | {self.subscription_type} | {self.parent.first_name}"

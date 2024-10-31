@@ -15,7 +15,11 @@
                 <span><strong>Category:</strong> {{ favorite.section.category.name }}</span><br>
                 <span><strong>Duration:</strong> {{ favorite.section.duration_minutes }} minutes</span><br>
                 <span><strong>Age Range:</strong> {{ favorite.section.min_age }} - {{ favorite.section.max_age }} years</span><br>
-                <span><strong>Added to Favorites on:</strong> {{ favorite.added_at|date:"F j, Y" }}</span>
+                <span><strong>Added to Favorites on:</strong> {{ favorite.added_at|date:"F j, Y" }}</span><br>
+                <form action="{% url 'remove_favorite_section' favorite.section.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm mt-2">Delete from Favorites</button>
+                </form>
             </li>
         {% empty %}
             <li>No favorite sections yet.</li>

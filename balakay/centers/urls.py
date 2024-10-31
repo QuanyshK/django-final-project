@@ -15,4 +15,6 @@ urlpatterns = [
     path('section/<int:id>/add_favorite/', add_favorite_section, name='add_favorite_section'),
     path('section/<int:id>/remove_favorite/', remove_favorite_section, name='remove_favorite_section'),
     path('favorites/', favorite_sections_view, name='favorite_sections'),
+    path('remove_favorite_section/<int:id>/', remove_favorite_section, name='remove_favorite_section'),
+    path('past-bookings/', past_bookings_view, name='past_bookings'),
 ]
