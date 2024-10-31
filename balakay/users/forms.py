@@ -41,11 +41,19 @@ class ClientUpdateForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['first_name', 'last_name', 'phone_number', 'city']
-
 class ChildForm(forms.ModelForm):
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
+
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Child
         fields = ['first_name', 'last_name', 'birth_date', 'gender']
         widgets = {
-            'birth_date': forms.DateInput(attrs={'type': 'date'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'birth_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }

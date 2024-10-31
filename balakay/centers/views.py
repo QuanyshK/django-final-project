@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.db import transaction
+from users.models import Client, UserSubscription
 from .models import Section, Center, Schedule, Category, Booking, FavoriteSection
 from .forms import BookingForm
 
@@ -51,41 +53,102 @@ def section_view(request, id):
 
 def book_schedule_view(request, schedule_id):
     schedule = get_object_or_404(Schedule, id=schedule_id)
-    existing_bookings = Booking.objects.filter(schedule=schedule, user=request.user)
+    client = Client.objects.get(user=request.user)
+    user_subscription = UserSubscription.objects.filter(parent=client).first()
+
     if request.method == 'POST':
-        form = BookingForm(request.POST, user=request.user, section=schedule.section)
-        if form.is_valid():
-            if existing_bookings.exists():
-                form.add_error(None, 'You have already booked this schedule for this child.')
-            else:
+        if user_subscription and user_subscription.total_visits > 0:
+            form = BookingForm(request.POST, user=request.user, section=schedule.section)
+            if form.is_valid():
                 booking = form.save(commit=False)
                 booking.schedule = schedule
                 booking.user = request.user
+                
+                user_subscription.total_visits -= 1
+                user_subscription.used_visits += 1
+                user_subscription.save()
+                
                 booking.save()
                 schedule.total_slots -= 1
                 schedule.save()
+                
                 return redirect(reverse('booking_success'))
+        else:
+            form.add_error(None, 'You have no remaining visits available or no subscription found.')
     else:
         form = BookingForm(user=request.user, section=schedule.section)
+
     return render(request, 'centers/book_schedule.html', {'form': form, 'schedule': schedule})
+
+
+
 
 def booking_success_view(request):
     return render(request, 'centers/booking_success.html')
 
 def cancel_booking_view(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
+    schedule = booking.schedule
+    
     if booking.status == Booking.PENDING:
         booking.status = Booking.CANCELLED
         booking.cancelled_at = timezone.now()
+        client = Client.objects.get(user=request.user)  
+        
+        user_subscription = UserSubscription.objects.get(parent=client)
+        user_subscription.total_visits += 1
+        user_subscription.used_visits -= 1
+        user_subscription.save()
+        schedule.total_slots += 1
+        schedule.save()
+        
         booking.save()
+
     return redirect('my-schedule')
+
+
 @login_required
 def user_bookings(request):
-    bookings = Booking.objects.filter(user=request.user, schedule__start_time__gte=timezone.now()).select_related('schedule').order_by('schedule__start_time')
+    expired_bookings = Booking.objects.filter(
+        user=request.user,
+        status=Booking.PENDING,
+        schedule__start_time__lt=timezone.now()
+    )
+    with transaction.atomic():
+        for booking in expired_bookings:
+            booking.status = Booking.EXPIRED
+            booking.save()
+    
+    bookings = Booking.objects.filter(
+        user=request.user,
+        schedule__start_time__gte=timezone.now()
+    ).select_related('schedule').order_by('schedule__start_time')
+    
     paginator = Paginator(bookings, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    if request.method == 'POST':
+        booking_id = request.POST.get('booking_id')
+        action = request.POST.get('action')
+        booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+
+        if action == 'confirm':
+            booking.status = Booking.CONFIRMED
+            booking.confirmed_at = timezone.now()
+            booking.save()
+        elif action == 'cancel':
+            booking.status = Booking.CANCELLED
+            booking.cancelled_at = timezone.now()
+            schedule = booking.schedule
+            schedule.total_slots += 1
+            schedule.save()
+            booking.save()
+
+        return redirect('my-schedule')  
+
     return render(request, 'centers/my_schedule.html', {'page_obj': page_obj, 'bookings': bookings})
+
 
 def center_details(request, center_id):
     center = get_object_or_404(Center, id=center_id)
@@ -94,23 +157,6 @@ def center_details(request, center_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'centers/center_details.html', {'center': center, 'page_obj': page_obj, 'sections': sections})
-
-def booking_detail(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    schedule = booking.schedule
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        if action == 'confirm':
-            booking.status = Booking.CONFIRMED
-            booking.confirmed_at = timezone.now()
-        elif action == 'cancel':
-            booking.status = Booking.CANCELLED
-            booking.cancelled_at = timezone.now()
-            schedule.total_slots += 1
-            schedule.save()
-        booking.save()
-        return redirect(reverse('booking_detail', args=[booking.id]))
-    return render(request, 'centers/booking_detail.html', {'booking': booking})
 
 @login_required
 def add_favorite_section(request, id):

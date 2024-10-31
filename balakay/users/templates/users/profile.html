@@ -11,23 +11,58 @@
     <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
 
     <h2>Children</h2>
-    <ul>
-        {% for child in children %}
-            <li>{{ child.first_name }} {{ child.last_name }} - {{ child.birth_date }} ({{ child.gender }})</li>
-        {% empty %}
-            <li>No children added yet.</li>
-        {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for child in children %}
+                <tr>
+                    <td>{{ child.first_name }}</td>
+                    <td>{{ child.last_name }}</td>
+                    <td>{{ child.birth_date }}</td>
+                    <td>{{ child.gender }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No children added yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <h2>Active Subscriptions</h2>
-    <ul>
-        {% for subscription in active_subscriptions %}
-            <li>{{ subscription.subscription_type }} - {{ subscription.activation_date }} to {{ subscription.expiration_date }}</li>
-        {% empty %}
-            <li>No active subscriptions.</li>
-        {% endfor %}
-    </ul>
-    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Subscription Type</th>
+                <th>Activation Date</th>
+                <th>Expiration Date</th>
+                <th>Actions</th>  <!-- Новый столбец для кнопок -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in active_subscriptions %}
+                <tr>
+                    <td>{{ subscription.subscription_type }}</td>
+                    <td>{{ subscription.activation_date }}</td>
+                    <td>{{ subscription.expiration_date }}</td>
+                    <td>
+                        <a href="{% url 'subscription_detail' subscription.id %}" class="btn btn-info">Details</a> 
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No active subscriptions.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <p><a href="{% url 'add_child' %}" class="btn btn-success">Add Child</a></p>
     <p><a href="{% url 'update_profile' %}" class="btn btn-warning">Edit Profile</a></p>

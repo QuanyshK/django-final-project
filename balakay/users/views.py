@@ -86,3 +86,18 @@ def add_child_view(request):
         form = ChildForm()
     
     return render(request, 'users/add_child.html', {'form': form})
+
+@login_required
+def subscription_detail(request, id):
+        client = Client.objects.get(user=request.user)  
+        user_subscription = UserSubscription.objects.get(id=id, parent=client)
+        if user_subscription.is_active:
+            user_subscription.update_remaining_days_and_visits()
+
+        return render(request, 'users/subscription_detail.html', {
+            'user_subscription': user_subscription,
+            'total_days': user_subscription.total_days,
+            'is_active': user_subscription.is_active,
+            'expiration_date': user_subscription.expiration_date,
+            'remaining_visits': user_subscription.total_visits - user_subscription.used_visits,
+        })

@@ -12,7 +12,8 @@
                     <th>Section</th>
                     <th>Start Time</th>
                     <th>End Time</th>
-                    <th>Details</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +22,25 @@
                         <td>{{ booking.schedule.section.name }}</td>
                         <td>{{ booking.schedule.start_time }}</td>
                         <td>{{ booking.schedule.end_time }}</td>
-                        <td><a href="{% url 'booking_detail' booking.id %}" class="btn btn-info">Details</a></td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <span class="text-warning">Pending</span>
+                            {% elif booking.status == 'confirmed' %}
+                                <span class="text-success">Confirmed</span>
+                            {% elif booking.status == 'cancelled' %}
+                                <span class="text-danger">Cancelled</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                    <button type="submit" name="action" value="confirm" class="btn btn-success btn-sm">Confirm</button>
+                                    <button type="submit" name="action" value="cancel" class="btn btn-danger btn-sm">Cancel</button>
+                                </form>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

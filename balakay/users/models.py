@@ -1,7 +1,8 @@
 from django.db import models
 from subscriptions.models import Subscription
 from django.contrib.auth.models import  User
-
+from django.utils import timezone
+from datetime import timedelta
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,6 +23,7 @@ class Child(models.Model):
     def __str__(self):
         return self.first_name
 
+
 class UserSubscription(models.Model):
     parent = models.ForeignKey(Client, on_delete=models.CASCADE)  
     child = models.ForeignKey(Child, on_delete=models.CASCADE)  
@@ -30,10 +32,31 @@ class UserSubscription(models.Model):
     expiration_date = models.DateTimeField()  
     total_days = models.PositiveIntegerField() 
     freeze_days = models.PositiveIntegerField() 
-    remaining_freeze_days = models.PositiveIntegerField()
-    is_active = models.BooleanField(default=True) 
+    daily_visits_limit = models.PositiveIntegerField()
+    total_visits = models.PositiveIntegerField()
+    used_visits = models.PositiveIntegerField()
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.child.first_name} | {self.subscription_type} | {self.parent.first_name}"
+
+    def update_remaining_days_and_visits(self):
+        today = timezone.now()
+    
+        if self.is_active and today >= self.activation_date:
+            days_passed = (today - self.activation_date).days
+        
+        if days_passed > 0:  
+            self.total_days = max(0, self.total_days - days_passed)
+            self.remaining_freeze_days = max(0, self.remaining_freeze_days - days_passed)
+
+            if self.total_days <= 0:
+                self.is_active = False
+                self.expiration_date = today
+                self.total_days = 0
+            else:
+                self.expiration_date = self.activation_date + timedelta(days=self.total_days)
+        
+        self.save()
 
 
