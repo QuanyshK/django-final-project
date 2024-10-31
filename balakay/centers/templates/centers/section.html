@@ -14,18 +14,24 @@
             <p><strong>Age Range:</strong> {{ section.min_age }} - {{ section.max_age }} years</p>
         </div>
     </div>
-  <div class="favorite-section">
+
+    <div class="favorite-section mb-3">
         {% if user.is_authenticated %}
-            {% if section in user.client.favoritesection_set.all %}
-                <a href="{% url 'remove_favorite_section' section.id %}" class="btn btn-danger">Remove from Favorites</a>
+            {% if is_favorited %}
+                <form action="{% url 'add_favorite_section' section.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove from Favorites</button>
+                </form>
             {% else %}
-                <a href="{% url 'add_favorite_section' section.id %}" class="btn btn-primary">Add to Favorites</a>
+                <form action="{% url 'add_favorite_section' section.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Add to Favorites</button>
+                </form>
             {% endif %}
         {% else %}
-            <a href="{% url 'login' %}" class="btn btn-primary">Login to add to Favorites</a>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login to Add to Favorites</a>
         {% endif %}
     </div>
-
 
     <div>
         <h2 class="h5">Schedules</h2>
@@ -36,7 +42,7 @@
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Total Slots</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,9 +53,9 @@
                             <td>{{ schedule.total_slots }}</td>
                             <td>
                                 {% if user.is_authenticated %}
-                                <a href="{% url 'book_schedule' schedule.id %}" class="btn btn-primary">Book</a>
+                                    <a href="{% url 'book_schedule' schedule.id %}" class="btn btn-primary">Book</a>
                                 {% else %}
-                                <a href="{% url 'login' %}" class="btn btn-primary">Book</a>
+                                    <a href="{% url 'login' %}" class="btn btn-primary">Login to Book</a>
                                 {% endif %}
                             </td>
                         </tr>
