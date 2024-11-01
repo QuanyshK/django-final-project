@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from users.models import Client
+from users.models import Client, Child
 from django.utils import timezone
 from datetime import timedelta
 # Create your models here.
@@ -50,13 +50,13 @@ class Booking(models.Model):
     PENDING = 'pending'
     CONFIRMED = 'confirmed'
     CANCELLED = 'cancelled'
-    EXPIRED = 'expired'  # New status for expired bookings
+    EXPIRED = 'expired'
     
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
         (CONFIRMED, 'Confirmed'),
         (CANCELLED, 'Cancelled'),
-        (EXPIRED, 'Expired'),  # New choice added here
+        (EXPIRED, 'Expired'),  
     ]
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -65,6 +65,7 @@ class Booking(models.Model):
     parent_name = models.CharField(max_length=255) 
     parent_phone = models.CharField(max_length=20)  
     child_name = models.CharField(max_length=255)
+    child = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
     created_at = models.DateTimeField(auto_now_add=True)
     confirmed_at = models.DateTimeField(null=True, blank=True)

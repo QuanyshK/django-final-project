@@ -1,37 +1,37 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.db import transaction
+from datetime import timedelta
 from users.models import Client, UserSubscription
 from .models import Section, Center, Schedule, Category, Booking, FavoriteSection
 from .forms import BookingForm
+from django.contrib import messages
+from users.models import Child
 
 def home_view(request):
     query = request.GET.get("q", "")
     search_type = request.GET.get("search_type", "all")
     category_id = request.GET.get("category", "")
-
     centers = Center.objects.none()
     sections = Section.objects.none()
     categories = Category.objects.all()
-
     if search_type == "centers" or search_type == "all":
         centers = Center.objects.filter(name__icontains=query)
-
     if search_type == "sections" or search_type == "all":
         sections = Section.objects.filter(name__icontains=query)
         if category_id:
             sections = sections.filter(category__id=category_id)
-    centers_paginator = Paginator(centers, 10)  
+    centers_paginator = Paginator(centers, 10)
     centers_page_number = request.GET.get('page')
     centers_page = centers_paginator.get_page(centers_page_number)
-    sections_paginator = Paginator(sections, 10) 
+    sections_paginator = Paginator(sections, 10)
     sections_page_number = request.GET.get('page')
     sections_page = sections_paginator.get_page(sections_page_number)
-
     return render(request, "centers/home.html", {
         "query": query,
         "search_type": search_type,
@@ -40,6 +40,7 @@ def home_view(request):
         "sections": sections_page,
         "categories": categories
     })
+
 def section_view(request, id):
     section = get_object_or_404(Section, id=id)
     schedules = Schedule.objects.filter(section=section, start_time__gte=timezone.now()).order_by('start_time')
@@ -54,16 +55,19 @@ def section_view(request, id):
 def book_schedule_view(request, schedule_id):
     schedule = get_object_or_404(Schedule, id=schedule_id)
     client = Client.objects.get(user=request.user)
-    user_subscription = UserSubscription.objects.filter(parent=client).first()
 
     if request.method == 'POST':
-        if user_subscription and user_subscription.total_visits > 0:
-            form = BookingForm(request.POST, user=request.user, section=schedule.section)
-            if form.is_valid():
-                booking = form.save(commit=False)
-                booking.schedule = schedule
-                booking.user = request.user
-                
+        form = BookingForm(request.POST, user=request.user, section=schedule.section)
+
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.schedule = schedule
+            booking.user = request.user
+            
+            child = form.cleaned_data['child']
+            user_subscription = UserSubscription.objects.filter(child=child).first()
+
+            if user_subscription and user_subscription.total_visits > 0:
                 user_subscription.total_visits -= 1
                 user_subscription.used_visits += 1
                 user_subscription.save()
@@ -73,15 +77,12 @@ def book_schedule_view(request, schedule_id):
                 schedule.save()
                 
                 return redirect(reverse('booking_success'))
-        else:
-            form.add_error(None, 'You have no remaining visits available or no subscription found.')
+            else:
+                form.add_error(None, 'You have no remaining visits available for this child or no subscription found.')
     else:
         form = BookingForm(user=request.user, section=schedule.section)
 
     return render(request, 'centers/book_schedule.html', {'form': form, 'schedule': schedule})
-
-
-
 
 def booking_success_view(request):
     return render(request, 'centers/booking_success.html')
@@ -89,23 +90,18 @@ def booking_success_view(request):
 def cancel_booking_view(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     schedule = booking.schedule
-    
     if booking.status == Booking.PENDING:
         booking.status = Booking.CANCELLED
         booking.cancelled_at = timezone.now()
-        client = Client.objects.get(user=request.user)  
-        
+        client = Client.objects.get(user=request.user)
         user_subscription = UserSubscription.objects.get(parent=client)
         user_subscription.total_visits += 1
         user_subscription.used_visits -= 1
         user_subscription.save()
         schedule.total_slots += 1
         schedule.save()
-        
         booking.save()
-
     return redirect('my-schedule')
-
 
 @login_required
 def user_bookings(request):
@@ -114,6 +110,7 @@ def user_bookings(request):
         status=Booking.PENDING,
         schedule__start_time__lt=timezone.now()
     )
+    
     with transaction.atomic():
         for booking in expired_bookings:
             booking.status = Booking.EXPIRED
@@ -132,23 +129,44 @@ def user_bookings(request):
         booking_id = request.POST.get('booking_id')
         action = request.POST.get('action')
         booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-
+        current_time = timezone.now()
+        
         if action == 'confirm':
-            booking.status = Booking.CONFIRMED
-            booking.confirmed_at = timezone.now()
-            booking.save()
+            if booking.schedule.start_time - timedelta(hours=1) <= current_time <= booking.schedule.end_time:
+                booking.status = Booking.CONFIRMED
+                booking.confirmed_at = timezone.now()
+                booking.save()
+            else:
+                messages.error(request, "You can only confirm within 1 hour before the start or during the session.")
+        
         elif action == 'cancel':
-            booking.status = Booking.CANCELLED
-            booking.cancelled_at = timezone.now()
-            schedule = booking.schedule
-            schedule.total_slots += 1
-            schedule.save()
-            booking.save()
+            if current_time < booking.schedule.start_time:
+                booking.status = Booking.CANCELLED
+                booking.cancelled_at = timezone.now()
+                schedule = booking.schedule
+                schedule.total_slots += 1
+                schedule.save()
 
-        return redirect('my-schedule')  
+                client = Client.objects.get(user=request.user)
+                user_subscription = UserSubscription.objects.filter(parent=client).first()
+                child_id = request.POST.get('child')  
+                if child_id:
+                    child = get_object_or_404(Child, id=child_id) 
+                    user_subscription = UserSubscription.objects.filter(child=child).first()
 
+                if user_subscription:
+                    user_subscription.total_visits += 1
+                    user_subscription.used_visits -= 1
+                    user_subscription.save()
+                    
+
+                booking.save()
+            else:
+                messages.error(request, "You cannot cancel a booking after the session has started.")
+        
+        return redirect('my-schedule')
+    
     return render(request, 'centers/my_schedule.html', {'page_obj': page_obj, 'bookings': bookings})
-
 
 def center_details(request, center_id):
     center = get_object_or_404(Center, id=center_id)
@@ -162,8 +180,7 @@ def center_details(request, center_id):
 def add_favorite_section(request, id):
     section = get_object_or_404(Section, id=id)
     client = request.user.client
-    favorite, created = FavoriteSection.objects.get_or_create(client=request.user.client, section=section)
-    
+    favorite, created = FavoriteSection.objects.get_or_create(client=client, section=section)
     if created:
         return redirect('section', id=id)
     else:

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django import forms
 from .models import Client, Child, UserSubscription
 
+
 class UserSubscriptionForm(forms.ModelForm):
     class Meta:
         model = UserSubscription
@@ -22,8 +23,18 @@ class UserSubscriptionForm(forms.ModelForm):
             self.fields['child'].queryset = Child.objects.none()
 
 class UserSubscriptionAdmin(admin.ModelAdmin):
-    form = UserSubscriptionForm
-    list_display = ('parent', 'child', 'subscription_type', 'activation_date', 'expiration_date')
+    list_display = ('child', 'parent', 'subscription_type', 'is_active', 'total_days', 'used_visits', 'expiration_date')
+    readonly_fields = ('used_visits', 'expiration_date') 
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            if not obj.total_days:
+                obj.total_days = 30
+            if not obj.total_visits:
+                obj.total_visits = 30
+            if not obj.daily_visits_limit:
+                obj.daily_visits_limit = 2
+        obj.save()
 
 admin.site.register(Client)
 admin.site.register(Child)
