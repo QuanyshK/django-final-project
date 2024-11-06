@@ -32,6 +32,15 @@ class BookingForm(forms.ModelForm):
         if not self.section:
             raise ValidationError("Section information is required for booking.")
         
+        # --- Age Validation ---
+        self._validate_child_age(child)
+
+        # --- Booking Limit Validation ---
+        self._validate_booking_limits(child)
+
+        return child
+
+    def _validate_child_age(self, child):
         min_age = self.section.min_age 
         max_age = self.section.max_age
 
@@ -46,27 +55,29 @@ class BookingForm(forms.ModelForm):
             elif age > max_age:
                 raise ValidationError(f"{child.first_name} must be under {max_age} years old to book this section.")
 
-            thirty_days_ago = today - timedelta(days=30)
+    def _validate_booking_limits(self, child):
+        today = date.today()
+        thirty_days_ago = today - timedelta(days=30)
 
-            booking_count_monthly = Booking.objects.filter(
-                child=child,
-                created_at__gte=thirty_days_ago,
-                status__in=[Booking.PENDING, Booking.CONFIRMED]
-            ).count()
+        booking_count_monthly = Booking.objects.filter(
+            child=child,
+            created_at__gte=thirty_days_ago,
+            status__in=[Booking.PENDING, Booking.CONFIRMED]
+        ).count()
 
-            if booking_count_monthly >= 30:
-                raise ValidationError(f"{child.first_name} has reached the monthly booking limit of 30 visits.")
+        if booking_count_monthly >= 30:
+            raise ValidationError(f"{child.first_name} has reached the monthly booking limit of 30 visits. "
+                                  f"Please try booking for next month or consider a different section.")
 
-            today_start = timezone.make_aware(datetime.combine(today, datetime.min.time()))
-            today_end = timezone.make_aware(datetime.combine(today, datetime.max.time()))
+        today_start = timezone.make_aware(datetime.combine(today, datetime.min.time()))
+        today_end = timezone.make_aware(datetime.combine(today, datetime.max.time()))
 
-            booking_count_daily = Booking.objects.filter(
-                child=child,
-                created_at__range=(today_start, today_end),
-                status__in=[Booking.PENDING, Booking.CONFIRMED]
-            ).count()
+        booking_count_daily = Booking.objects.filter(
+            child=child,
+            created_at__range=(today_start, today_end),
+            status__in=[Booking.PENDING, Booking.CONFIRMED]
+        ).count()
 
-            if booking_count_daily >= 2:
-                raise ValidationError(f"{child.first_name} has reached the daily booking limit of 2 visits.")
-
-        return child
+        if booking_count_daily >= 2:
+            raise ValidationError(f"{child.first_name} has reached the daily booking limit of 2 visits. "
+                                  f"Please try booking for another day.")

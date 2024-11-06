@@ -65,20 +65,26 @@ def book_schedule_view(request, schedule_id):
             booking.user = request.user
             
             child = form.cleaned_data['child']
-            user_subscription = UserSubscription.objects.filter(child=child).first()
 
-            if user_subscription and user_subscription.total_visits > 0:
-                user_subscription.total_visits -= 1
-                user_subscription.used_visits += 1
-                user_subscription.save()
-                
-                booking.save()
-                schedule.total_slots -= 1
-                schedule.save()
-                
-                return redirect(reverse('booking_success'))
-            else:
-                form.add_error(None, 'You have no remaining visits available for this child or no subscription found.')
+            try:
+                with transaction.atomic():
+                    user_subscription = UserSubscription.objects.get(child=child)
+                    if user_subscription.total_visits > 0:
+                        user_subscription.total_visits -= 1
+                        user_subscription.used_visits += 1
+                        user_subscription.save()
+
+                        booking.save()
+                        schedule.total_slots -= 1
+                        schedule.save()
+
+                        return redirect(reverse('booking_success'))
+                    else:
+                        form.add_error(None, 'You have no remaining visits available for this child.')
+            except UserSubscription.DoesNotExist:
+                form.add_error(None, 'No subscription found for this child.')
+            except IntegrityError:
+                form.add_error(None, 'An error occurred while processing your booking. Please try again later.')
     else:
         form = BookingForm(user=request.user, section=schedule.section)
 
@@ -87,21 +93,6 @@ def book_schedule_view(request, schedule_id):
 def booking_success_view(request):
     return render(request, 'centers/booking_success.html')
 
-def cancel_booking_view(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
-    schedule = booking.schedule
-    if booking.status == Booking.PENDING:
-        booking.status = Booking.CANCELLED
-        booking.cancelled_at = timezone.now()
-        client = Client.objects.get(user=request.user)
-        user_subscription = UserSubscription.objects.get(parent=client)
-        user_subscription.total_visits += 1
-        user_subscription.used_visits -= 1
-        user_subscription.save()
-        schedule.total_slots += 1
-        schedule.save()
-        booking.save()
-    return redirect('my-schedule')
 
 @login_required
 def user_bookings(request):
@@ -146,14 +137,10 @@ def user_bookings(request):
                 schedule = booking.schedule
                 schedule.total_slots += 1
                 schedule.save()
-
-                client = Client.objects.get(user=request.user)
-                user_subscription = UserSubscription.objects.filter(parent=client).first()
-                child_id = request.POST.get('child')  
-                if child_id:
-                    child = get_object_or_404(Child, id=child_id) 
-                    user_subscription = UserSubscription.objects.filter(child=child).first()
-
+                
+                user_subscription = UserSubscription.objects.get(child=booking.child)
+                
+                
                 if user_subscription:
                     user_subscription.total_visits += 1
                     user_subscription.used_visits -= 1
