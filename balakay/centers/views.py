@@ -161,8 +161,7 @@ def user_bookings(request):
                 
                 booking.save()
             else:
-                raise ValidationError(f"{child.first_name} has reached the daily booking limit of 2 visits. "
-                                  f"Please try booking for another day.")
+                messages.error(request, "You can't cancel if activity it starts.")
         
         return redirect('my-schedule')
     
