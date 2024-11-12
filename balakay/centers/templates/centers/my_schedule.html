@@ -3,28 +3,97 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-dark">Your Bookings</h1>
-    
+    <a href="{% url 'past_bookings' %}">View Past Bookings</a>
+
+    <!-- Display Messages -->
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert 
+                    {% if message.tags == 'error' %}alert-danger
+                    {% elif message.tags == 'success' %}alert-success
+                    {% elif message.tags == 'warning' %}alert-warning
+                    {% else %}alert-info
+                    {% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% if bookings %}
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Child's Name</th>
                     <th>Section</th>
                     <th>Start Time</th>
                     <th>End Time</th>
-                    <th>Details</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for booking in bookings %}
+                {% for booking in page_obj %}
                     <tr>
+                        <td>{{ booking.child.first_name }} {{ booking.child.last_name }}</td>
                         <td>{{ booking.schedule.section.name }}</td>
                         <td>{{ booking.schedule.start_time }}</td>
                         <td>{{ booking.schedule.end_time }}</td>
-                        <td><a href="{% url 'booking_detail' booking.id %}" class="btn btn-info">Details</a></td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <span class="text-warning">Pending</span>
+                            {% elif booking.status == 'confirmed' %}
+                                <span class="text-success">Confirmed</span>
+                            {% elif booking.status == 'cancelled' %}
+                                <span class="text-danger">Cancelled</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <form method="post" action="{% url 'user_bookings' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                    <input type="hidden" name="child_id" value="{{ booking.child.id }}">
+                                    <button type="submit" name="action" value="confirm" class="btn btn-success btn-sm">Confirm</button>
+                                    
+                                    {% if booking.schedule.start_time|date:"U" > request.timestamp|date:"U" %}
+                                        <button type="submit" name="action" value="cancel" class="btn btn-danger btn-sm">Cancel</button>
+                                    {% endif %}
+                                </form>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+        <nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item disabled">
+                    <span class="page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
     {% else %}
         <p class="text-muted">You have no bookings yet.</p>
     {% endif %}

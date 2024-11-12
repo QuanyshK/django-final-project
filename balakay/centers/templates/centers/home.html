@@ -1,32 +1,130 @@
 {% extends 'base.html' %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
 {% block content %}
 <div class="container mt-5">
-    <h1>Sections by Categories</h1>
+    <h1>Search</h1>
+    <form method="GET" class="mb-4">
+        <div class="input-group mb-3">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search Centers or Sections">
+            <select name="search_type" class="form-select mx-2" required>
+                <option value="">Select Search Type</option>
+                <option value="centers" {% if search_type == 'centers' %}selected{% endif %}>Centers</option>
+                <option value="sections" {% if search_type == 'sections' %}selected{% endif %}>Sections</option>
+            </select>
+            <select name="category" class="form-select mx-2" {% if search_type != 'sections' %}disabled{% endif %}>
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if category.id|stringformat:"s" == request.GET.category %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
 
-    {% for category in categories %}
-        <h2>{{ category.name }}</h2>
-
-        {% if category.sections.all %}
-            <div class="carousel-container">
-                <div class="d-flex overflow-auto">
-                    {% for section in category.sections.all %}
-                        <div class="card mx-2" style="width: 250px;">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="section/{{ section.id }}">{{ section.name }}</a></h5>
-                                <p class="card-text">{{ section.description }}</p>
-                                <p>Age: {{ section.min_age }} - {{ section.max_age }}</p>
-                                <p>Duration: {{ section.duration_minutes }} minutes</p>
-                                <p>Center: <a href="{% url 'center_details' section.center.id %}">{{ section.center }}</a></p>
-                            </div>
-                        </div>
+    <div class="row">
+        {% if search_type == 'centers' %}
+        <div class="col-md-12">
+            <h2>Centers</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for center in centers %}
+                    <tr>
+                        <td>{{ center.name }}</td>
+                        <td>{{ center.address }}</td>
+                        <td>{{ center.description }}</td>
+                        <td><a href="{% url 'center_details' center.id %}" class="btn btn-info">Details</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No centers available.</td>
+                    </tr>
                     {% endfor %}
-                </div>
-            </div>
-        {% else %}
-            <p>No sections available in this category.</p>
+                </tbody>
+            </table>
+
+            <nav>
+                <ul class="pagination">
+                    {% if centers.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ centers.previous_page_number }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Previous</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item disabled"><span class="page-link">{{ centers.number }} of {{ centers.paginator.num_pages }}</span></li>
+                    {% if centers.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ centers.next_page_number }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ centers.paginator.num_pages }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Last</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
         {% endif %}
-    {% endfor %}
+
+        {% if search_type == 'sections' %}
+        <div class="col-md-12">
+            <h2>Sections</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age Range</th>
+                        <th>Duration</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for section in sections %}
+                    <tr>
+                        <td>{{ section.name }}</td>
+                        <td>{{ section.min_age }} - {{ section.max_age }}</td>
+                        <td>{{ section.duration_minutes }} minutes</td>
+                        <td><a href="{% url 'section' section.id %}" class="btn btn-info">Details</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No sections available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <nav>
+                <ul class="pagination">
+                    {% if sections.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ sections.previous_page_number }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Previous</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item disabled"><span class="page-link">{{ sections.number }} of {{ sections.paginator.num_pages }}</span></li>
+                    {% if sections.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ sections.next_page_number }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ sections.paginator.num_pages }}&q={{ query }}&search_type={{ search_type }}{% if category %}&category={{ category }}{% endif %}">Last</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

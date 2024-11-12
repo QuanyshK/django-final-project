@@ -8,4 +8,5 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('profile/update/', views.update_profile, name='update_profile'),
     path('add-child/', views.add_child_view, name='add_child'),
+    path('subscription_detail/<int:id>/', views.subscription_detail, name='subscription_detail'),
 ]

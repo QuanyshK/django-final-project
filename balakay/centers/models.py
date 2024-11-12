@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from users.models import Client
+from users.models import Client, Child
+from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 
 class Category(models.Model):
@@ -48,24 +50,47 @@ class Booking(models.Model):
     PENDING = 'pending'
     CONFIRMED = 'confirmed'
     CANCELLED = 'cancelled'
+    EXPIRED = 'expired'
     
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
         (CONFIRMED, 'Confirmed'),
         (CANCELLED, 'Cancelled'),
-     ]
+        (EXPIRED, 'Expired'),  
+    ]
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    client = models.OneToOneField('users.Client', on_delete=models.CASCADE,null=True, blank=True)
+    client = models.OneToOneField('users.Client', on_delete=models.CASCADE, null=True, blank=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)  
     parent_name = models.CharField(max_length=255) 
     parent_phone = models.CharField(max_length=20)  
     child_name = models.CharField(max_length=255)
+    child = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
-    created_at = models.DateTimeField(auto_now_add=True)  
-    confirmed_at = models.DateTimeField(null=True, blank=True) 
-    cancelled_at = models.DateTimeField(null=True, blank=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
+    confirmed_at = models.DateTimeField(null=True, blank=True)
+    cancelled_at = models.DateTimeField(null=True, blank=True)
     def __str__(self):
         return f"{self.child_name} | {self.schedule.section.name} | {self.status}"
+    
+    def total_bookings_last_30_days(self):
+        """Calculate the total bookings for the user in the last 30 days."""
+        thirty_days_ago = timezone.now() - timedelta(days=30)
+        return Booking.objects.filter(
+            user=self.user,
+            created_at__gte=thirty_days_ago,
+            status__in=[self.PENDING, self.CONFIRMED]
+        ).count()
+    
+    def is_expired(self):
+        """Check if the booking schedule time has passed."""
+        return timezone.now() > self.schedule.start_time
+    
+    def update_status_if_expired(self):
+        """Automatically mark the booking as expired if the schedule time has passed and still pending."""
+        if self.status == self.PENDING and self.is_expired():
+            self.status = self.EXPIRED
+            self.save()
 
 
 

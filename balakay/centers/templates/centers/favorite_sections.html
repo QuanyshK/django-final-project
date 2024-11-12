@@ -4,22 +4,66 @@
 <div class="container mt-5">
     <h1 class="text-dark">My Favorite Sections</h1>
 
-    <ul>
-        {% for favorite in favorite_sections %}
-            <li>
-                <a href="{% url 'section' favorite.section.id %}">
-                    <strong>{{ favorite.section.name }}</strong>
-                </a> 
-                <br>
-                <span><strong>Center:</strong> {{ favorite.section.center.name }}</span><br>
-                <span><strong>Category:</strong> {{ favorite.section.category.name }}</span><br>
-                <span><strong>Duration:</strong> {{ favorite.section.duration_minutes }} minutes</span><br>
-                <span><strong>Age Range:</strong> {{ favorite.section.min_age }} - {{ favorite.section.max_age }} years</span><br>
-                <span><strong>Added to Favorites on:</strong> {{ favorite.added_at|date:"F j, Y" }}</span>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Section Name</th>
+                <th>Center</th>
+                <th>Category</th>
+                <th>Duration</th>
+                <th>Age Range</th>
+                <th>Added to Favorites on</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for favorite in page_obj %}
+                <tr>
+                    <td>
+                        <a href="{% url 'section' favorite.section.id %}">
+                            <strong>{{ favorite.section.name }}</strong>
+                        </a>
+                    </td>
+                    <td>{{ favorite.section.center.name }}</td>
+                    <td>{{ favorite.section.category.name }}</td>
+                    <td>{{ favorite.section.duration_minutes }} minutes</td>
+                    <td>{{ favorite.section.min_age }} - {{ favorite.section.max_age }} years</td>
+                    <td>{{ favorite.added_at|date:"F j, Y" }}</td>
+                    <td>
+                        <form action="{% url 'remove_favorite_section' favorite.section.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete from Favorites</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No favorite sections yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">First</a>
             </li>
-        {% empty %}
-            <li>No favorite sections yet.</li>
-        {% endfor %}
-    </ul>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

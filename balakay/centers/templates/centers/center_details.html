@@ -5,22 +5,34 @@
     <h1>{{ center.name }}</h1>
     <p>{{ center.description }}</p>
 
-    <h2>Available Schedules</h2>
-    <ul>
-        {% for schedule in schedules %}
-            <li>
-                {{ schedule.section.name }} - {{ schedule.start_time }} to {{ schedule.end_time }}
-                {% if user.is_authenticated %}
-                <a href="{% url 'book_schedule' schedule.id %}" class="btn btn-primary">Book Now</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="btn btn-primary">Login to book</a>
-                {% endif %}
-            </li>
-        {% empty %}
-            <p>No schedules available at this center.</p>
-        {% endfor %}
-    </ul>
-
-
+    <h2>Available Sections</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Section Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for section in sections %}
+                <tr>
+                    <td>{{ section.name }}</td>
+                    <td>{{ section.description }}</td>
+                    <td>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'section' section.id %}" class="btn btn-primary">Book Now</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-primary">Login to book</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No sections available at this center.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

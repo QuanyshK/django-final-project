@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-dark">Subscription Details</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="h5">Child: {{ user_subscription.child.first_name }}</h2>
+            <p><strong>Subscription Type:</strong> {{ user_subscription.subscription_type.name }}</p>
+            <p><strong>Activation Date:</strong> {{ user_subscription.activation_date }}</p>
+            <p><strong>Expiration Date:</strong> {{ user_subscription.expiration_date }}</p>
+            <p><strong>Total Days:</strong> {{ user_subscription.total_days }}</p>
+            <p><strong>Total Visits:</strong> {{ user_subscription.total_visits }}</p>
+            <p><strong>Used Visits:</strong> {{ user_subscription.used_visits }}</p>
+            <p><strong>Active:</strong> {{ user_subscription.is_active }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

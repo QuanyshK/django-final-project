@@ -1,8 +1,11 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+
 from .forms import ChildForm, UserLoginForm, ClientRegistrationForm, UserUpdateForm, ClientUpdateForm
-from .models import User, Client, Child
+from .models import *
 from django.contrib.auth.decorators import login_required
 
 
@@ -39,8 +42,13 @@ def logout_user(request):
 def profile_view(request):
     client = Client.objects.get(user=request.user)
     children = Child.objects.filter(parent=client)
-    return render(request, 'users/profile.html', {'user': request.user, 'client': client, 'children': children})
-
+    active_subscriptions = UserSubscription.objects.filter(parent=client, expiration_date__gte=timezone.now())  # Фильтруем по полю parent и проверяем, что абонемент активен
+    return render(request, 'users/profile.html', {
+        'user': request.user,
+        'client': client,
+        'children': children,
+        'active_subscriptions': active_subscriptions
+    })
 
 @login_required
 def update_profile(request):
@@ -78,3 +86,18 @@ def add_child_view(request):
         form = ChildForm()
     
     return render(request, 'users/add_child.html', {'form': form})
+
+@login_required
+def subscription_detail(request, id):
+        client = Client.objects.get(user=request.user)  
+        user_subscription = UserSubscription.objects.get(id=id, parent=client)
+        if user_subscription.is_active:
+            user_subscription.update_remaining_days_and_visits()
+
+        return render(request, 'users/subscription_detail.html', {
+            'user_subscription': user_subscription,
+            'total_days': user_subscription.total_days,
+            'is_active': user_subscription.is_active,
+            'expiration_date': user_subscription.expiration_date,
+            'remaining_visits': user_subscription.total_visits - user_subscription.used_visits,
+        })
