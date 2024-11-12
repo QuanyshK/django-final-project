@@ -18,7 +18,7 @@
                                 <p class="card-text">{{ section.description }}</p>
                                 <p>Age: {{ section.min_age }} - {{ section.max_age }}</p>
                                 <p>Duration: {{ section.duration_minutes }} minutes</p>
-                                <p>Center: <a href="#">{{ section.center }}</a></p>
+                                <p>Center: <a href="{% url 'center_details' section.center.id %}">{{ section.center }}</a></p>
                             </div>
                         </div>
                     {% endfor %}

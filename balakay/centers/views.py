@@ -78,6 +78,8 @@ def center_details(request, center_id):
 
 def booking_detail(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    schedule = booking.schedule
+
 
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -87,6 +89,8 @@ def booking_detail(request, booking_id):
         elif action == 'cancel':
             booking.status = Booking.CANCELLED
             booking.cancelled_at = timezone.now()
+            schedule.total_slots += 1
+            schedule.save()
 
         booking.save()
         return redirect(reverse('booking_detail', args=[booking.id]))

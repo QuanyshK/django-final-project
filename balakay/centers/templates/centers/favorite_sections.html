@@ -7,7 +7,15 @@
     <ul>
         {% for favorite in favorite_sections %}
             <li>
-                <a href="{% url 'section' favorite.section.id %}">{{ favorite.section.name }}</a>
+                <a href="{% url 'section' favorite.section.id %}">
+                    <strong>{{ favorite.section.name }}</strong>
+                </a> 
+                <br>
+                <span><strong>Center:</strong> {{ favorite.section.center.name }}</span><br>
+                <span><strong>Category:</strong> {{ favorite.section.category.name }}</span><br>
+                <span><strong>Duration:</strong> {{ favorite.section.duration_minutes }} minutes</span><br>
+                <span><strong>Age Range:</strong> {{ favorite.section.min_age }} - {{ favorite.section.max_age }} years</span><br>
+                <span><strong>Added to Favorites on:</strong> {{ favorite.added_at|date:"F j, Y" }}</span>
             </li>
         {% empty %}
             <li>No favorite sections yet.</li>
