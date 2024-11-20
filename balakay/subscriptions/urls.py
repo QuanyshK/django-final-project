@@ -1,16 +1,12 @@
-from django.urls import path
-# from .views import (
-#     SubscriptionListView,
-#     SubscriptionDetailView,
-#     SubscriptionCreateView,
-#     SubscriptionUpdateView,
-#     SubscriptionDeleteView
-# )
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import AgeGroupViewSet, SubscriptionViewSet
 
-# urlpatterns = [
-#     path('subscriptions/', SubscriptionListView.as_view(), name='subscription-list'),
-#     path('subscriptions/<int:pk>/', SubscriptionDetailView.as_view(), name='subscription-detail'),
-#     path('subscriptions/new/', SubscriptionCreateView.as_view(), name='subscription-create'),
-#     path('subscriptions/<int:pk>/edit/', SubscriptionUpdateView.as_view(), name='subscription-update'),
-#     path('subscriptions/<int:pk>/delete/', SubscriptionDeleteView.as_view(), name='subscription-delete'),
-# ]
+router = DefaultRouter()
+router.register(r'age-groups', AgeGroupViewSet)
+router.register(r'subscriptions', SubscriptionViewSet)
+
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
