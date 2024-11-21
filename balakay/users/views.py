@@ -5,15 +5,11 @@ from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.utils import timezone
 from .models import Client, Child, UserSubscription
 from .serializers import ClientSerializer, ChildSerializer, UserSubscriptionSerializer
 from .forms import ClientRegistrationForm, UserLoginForm, UserUpdateForm, ClientUpdateForm, ChildForm
-
-
+from django.http import JsonResponse
 def login_view(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)
@@ -51,7 +47,6 @@ def profile_view(request):
     active_subscriptions = UserSubscription.objects.filter(parent=client, expiration_date__gte=timezone.now())
     return render(request, 'users/profile.html', {'client': client, 'children': children, 'active_subscriptions': active_subscriptions})
 
-
 @login_required
 def update_profile(request):
     user = request.user
@@ -62,11 +57,16 @@ def update_profile(request):
         if user_form.is_valid() and client_form.is_valid():
             user_form.save()
             client_form.save()
-            return redirect('profile')
+            client.refresh_from_db()
+            return JsonResponse({'message': 'Profile updated successfully!'}, status=200)
+        else:
+            return JsonResponse({'error': 'Invalid data submitted'}, status=400)
     else:
         user_form = UserUpdateForm(instance=user)
         client_form = ClientUpdateForm(instance=client)
     return render(request, 'users/update_profile.html', {'user_form': user_form, 'client_form': client_form})
+
+
 
 
 @login_required
@@ -77,7 +77,7 @@ def add_child_view(request):
             child = form.save(commit=False)
             child.parent = get_object_or_404(Client, user=request.user)
             child.save()
-            return redirect('profile')
+            return JsonResponse({'message': 'Child added successfully!'}, status=201)  
     else:
         form = ChildForm()
     return render(request, 'users/add_child.html', {'form': form})

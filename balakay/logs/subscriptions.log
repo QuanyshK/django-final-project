@@ -40,3 +40,110 @@ INFO 2024-11-21 02:06:08,760 signals AgeGroup created: 1 - 4-7
 INFO 2024-11-21 02:06:08,767 signals AgeGroup created: 1 - 4-7
 INFO 2024-11-21 02:06:50,333 signals AgeGroup created: 1 - 4-7
 INFO 2024-11-21 02:06:50,341 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 12:50:25,098 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 12:50:25,112 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:07:28,459 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:07:28,475 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:15:31,829 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:15:31,843 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:19:36,472 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:19:36,486 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:21:18,391 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:21:18,404 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:21:52,090 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:21:52,104 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:23:29,476 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:23:29,489 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:25:03,392 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:25:03,407 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:26:27,816 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:26:27,830 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:27:31,623 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:27:31,637 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:27:31,935 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:32,424 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:32,730 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:33,331 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:33,624 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:34,206 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:27:34,513 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:32,082 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:30:32,096 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:30:32,387 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:32,784 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:33,073 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:33,663 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:33,959 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:34,529 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:30:34,817 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:44,219 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:32:44,233 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:32:44,838 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:45,565 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:46,140 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:46,977 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:47,552 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:48,403 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:32:48,966 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:35:58,839 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:35:58,853 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:35:59,463 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:00,277 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:00,855 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:01,692 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:02,280 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:03,165 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:36:03,748 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:46,822 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:38:46,837 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:38:47,438 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:48,184 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:48,799 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:49,667 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:50,260 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:51,129 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:38:51,716 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:39:02,929 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:39:02,943 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:39:03,548 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:39:04,293 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:39:05,144 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:39:05,782 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:39:06,747 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:42:20,461 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:42:20,781 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:42:20,782 signals Subscription created: 1 - Test Subscription, Active: True
+INFO 2024-11-21 13:42:21,479 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:42:22,075 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:42:22,906 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:42:23,480 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:42:24,315 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:44:26,294 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:44:26,590 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:44:26,591 signals Subscription created: 1 - Test Subscription, Active: True
+INFO 2024-11-21 13:44:27,255 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:44:27,852 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:44:28,736 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:44:29,291 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:44:30,306 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:45:04,562 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:45:04,563 signals Subscription created: 1 - Test Subscription, Active: True
+INFO 2024-11-21 13:45:05,274 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:45:05,877 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:45:06,729 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:45:07,298 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:45:08,126 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:41,025 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:46:41,026 signals Subscription created: 1 - Test Subscription, Active: True
+INFO 2024-11-21 13:46:41,605 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:42,228 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:43,092 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:43,671 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:44,537 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:56,999 signals AgeGroup created: 1 - 4-7
+INFO 2024-11-21 13:46:57,000 signals Subscription created: 1 - Test Subscription, Active: True
+INFO 2024-11-21 13:46:57,671 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:58,335 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:59,196 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:46:59,769 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-11-21 13:47:00,632 signals Subscription created: 1 - Basic Plan, Active: True

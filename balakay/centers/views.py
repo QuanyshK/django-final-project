@@ -107,7 +107,6 @@ def book_schedule_view(request, schedule_id):
 
             try:
                 with transaction.atomic():
-                    # Check for existing booking
                     existing_booking = Booking.objects.filter(
                         user=request.user,
                         child=child,
