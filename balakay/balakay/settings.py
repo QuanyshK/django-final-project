@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'centers',
     'subscriptions',
     'users',
+    'merchant',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
@@ -191,3 +192,7 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
+
+LOGIN_REDIRECT_URL = '/merchant/schedule/'
+LOGIN_URL = '/merchant/login/'
+

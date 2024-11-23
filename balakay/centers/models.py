@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from users.models import Client, Child
+from django.apps import apps
 from django.utils import timezone
 from datetime import timedelta
 # Create your models here.
@@ -13,9 +14,16 @@ class Category(models.Model):
         return self.name
     
 class Center(models.Model):
-    manager_name = models.CharField(max_length=255)  
-    manager_phone = models.CharField(max_length=20)  
-    name = models.CharField(max_length=255)  
+    partner = models.ForeignKey(
+        'merchant.Partner',  # Используем строку вместо прямого импорта
+        on_delete=models.CASCADE,
+        related_name="centers",
+        null=True,
+        blank=True
+    )
+    manager_name = models.CharField(max_length=255)
+    manager_phone = models.CharField(max_length=20)
+    name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='storage/')  
     subtitle = models.CharField(max_length=255, null=True, blank=True) 
     description = models.TextField()  

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>View Bookings</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Child's Name</th>
+                <th>Schedule</th>
+                <th>Start Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.child_name }}</td>
+                <td>{{ booking.schedule.section.name }}</td>
+                <td>{{ booking.schedule.start_time }}</td>
+                <td>{{ booking.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No bookings available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
