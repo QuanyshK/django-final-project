@@ -2,18 +2,54 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.db import IntegrityError
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.db import transaction
-from datetime import timedelta
 from users.models import Client, UserSubscription
 from .models import Section, Center, Schedule, Category, Booking, FavoriteSection
 from .forms import BookingForm
 from django.contrib import messages
-import datetime 
-from users.models import Child
 import datetime
+from rest_framework import viewsets
+from .models import Category, Center, Section, Schedule, Booking, FavoriteSection
+from .serializers import (
+    CategorySerializer,
+    CenterSerializer,
+    SectionSerializer,
+    ScheduleSerializer,
+    BookingSerializer,
+    FavoriteSectionSerializer,
+)
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CenterViewSet(viewsets.ModelViewSet):
+    queryset = Center.objects.all()
+    serializer_class = CenterSerializer
+
+
+class SectionViewSet(viewsets.ModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+class FavoriteSectionViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteSection.objects.all()
+    serializer_class = FavoriteSectionSerializer
 
 def home_view(request):
     query = request.GET.get("q", "")
@@ -71,7 +107,6 @@ def book_schedule_view(request, schedule_id):
 
             try:
                 with transaction.atomic():
-                    # Check for existing booking
                     existing_booking = Booking.objects.filter(
                         user=request.user,
                         child=child,
@@ -211,3 +246,33 @@ def past_bookings_view(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'centers/past_bookings.html', {'page_obj': page_obj, 'past_bookings': past_bookings})
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CenterViewSet(viewsets.ModelViewSet):
+    queryset = Center.objects.all()
+    serializer_class = CenterSerializer
+
+
+class SectionViewSet(viewsets.ModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+class FavoriteSectionViewSet(viewsets.ModelViewSet):
+    queryset = FavoriteSection.objects.all()
+    serializer_class = FavoriteSectionSerializer

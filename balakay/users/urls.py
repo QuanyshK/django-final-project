@@ -1,12 +1,22 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import (
+    login_view, logout_view, register_client, profile_view, update_profile, 
+    add_child_view, subscription_detail, ClientViewSet, ChildViewSet, UserSubscriptionViewSet, 
+)
+
+router = DefaultRouter()
+router.register(r'clients', ClientViewSet)
+router.register(r'children', ChildViewSet)
+router.register(r'user-subscriptions', UserSubscriptionViewSet)
 
 urlpatterns = [
-    path('register/', views.register_client, name='register'),
-    path('', views.login_user, name='login'),
-    path('logout/', views.logout_user, name='logout'),
-    path('profile/', views.profile_view, name='profile'),
-    path('profile/update/', views.update_profile, name='update_profile'),
-    path('add-child/', views.add_child_view, name='add_child'),
-    path('subscription_detail/<int:id>/', views.subscription_detail, name='subscription_detail'),
+    path('', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('register/', register_client, name='register'),
+    path('profile/', profile_view, name='profile'),
+    path('profile/update/', update_profile, name='update_profile'),
+    path('add-child/', add_child_view, name='add_child'),
+    path('subscription_detail/<int:id>/', subscription_detail, name='subscription_detail'),
+    path('api/', include(router.urls)),
 ]
