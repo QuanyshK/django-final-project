@@ -1,35 +1,45 @@
 {% extends 'base.html' %}
 
+{% block title %}Manage Schedules{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h1>Manage Your Schedule</h1>
-    <a href="{% url 'add_schedule' %}" class="btn btn-success mb-3">Add Schedule</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for schedule in schedules %}
-            <tr>
-                <td>{{ schedule.date }}</td>
-                <td>{{ schedule.start_time }}</td>
-                <td>{{ schedule.end_time }}</td>
-                <td>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="4">No schedules available.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-4">
+    <h1 class="mb-4">Manage Schedules</h1>
+
+    <div class="text-end mb-3">
+        <a href="{% url 'add_schedule' %}" class="btn btn-success">Add Schedule</a>
+    </div>
+
+    {% if schedules %}
+        <table class="table table-bordered table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Section</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Total Slots</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in schedules %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ schedule.section.name }}</td>
+                        <td>{{ schedule.start_time }}</td>
+                        <td>{{ schedule.end_time }}</td>
+                        <td>{{ schedule.total_slots }}</td>
+                        <td>
+                            <a href="{% url 'schedule_details' schedule.id %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'edit_schedule' schedule.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-muted">No schedules found. Click "Add Schedule" to create one.</p>
+    {% endif %}
 </div>
 {% endblock %}
