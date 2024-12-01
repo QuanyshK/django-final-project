@@ -8,16 +8,36 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-light">
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">User Profile Analytics</a>
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+            </div> -->
         </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="container">
         <h1 class="text-center mb-4">User Profile Analytics</h1>
 
+        <!-- User Activity and Interactions Row -->
         <div class="row mb-4">
+            <!-- User Activity Chart -->
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -26,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            <!-- User Interactions Chart -->
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -36,6 +57,7 @@
             </div>
         </div>
 
+        <!-- Recent Booking Stats -->
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow-sm">
@@ -46,21 +68,49 @@
                 </div>
             </div>
         </div>
+
+        <!-- Future Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Upcoming Features</h2>
+                        <ul>
+                            <li><strong>Real-time Data:</strong> Integrate WebSocket support for real-time user activity updates.</li>
+                            <li><strong>Detailed User Segmentation:</strong> Provide insights on user demographics and behavior trends.</li>
+                            <li><strong>Export Data:</strong> Allow users to export the analytics data into CSV or Excel format.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Footer Section -->
     <footer class="bg-primary text-white text-center py-3 mt-4">
         <p>© 2024 User Profile Analytics</p>
     </footer>
 
+    <!-- JavaScript Section -->
     <script>
+        // Fetching the data from the API
         async function fetchProfileAnalyticsData() {
-            const response = await fetch('/analytics/user_profile_data/');
-            return response.json();
+            try {
+                const response = await fetch('/analytics/user_profile_data/');
+                if (!response.ok) {
+                    throw new Error("Failed to fetch profile analytics data");
+                }
+                return response.json();
+            } catch (error) {
+                console.error("Error fetching analytics data:", error);
+            }
         }
 
+        // Function to render the charts
         async function renderProfileCharts() {
             const profileData = await fetchProfileAnalyticsData();
 
+            // User Activity Chart (Line Chart)
             const activityCtx = document.getElementById('userActivityChart').getContext('2d');
             new Chart(activityCtx, {
                 type: 'line',
@@ -76,6 +126,7 @@
                 },
             });
 
+            // User Interactions Chart (Bar Chart)
             const interactionCtx = document.getElementById('userInteractionsChart').getContext('2d');
             new Chart(interactionCtx, {
                 type: 'bar',
@@ -91,6 +142,7 @@
                 },
             });
 
+            // Recent Booking Stats Chart (Pie Chart)
             const bookingCtx = document.getElementById('recentBookingStatsChart').getContext('2d');
             new Chart(bookingCtx, {
                 type: 'pie',
@@ -115,6 +167,7 @@
             });
         }
 
+        // Call the function to render the charts on page load
         renderProfileCharts();
     </script>
 </body>
