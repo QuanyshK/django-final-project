@@ -1,3 +1,7 @@
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, login
@@ -5,6 +9,8 @@ from django.contrib.auth.models import User
 from .forms import PartnerRegistrationForm, ScheduleForm
 from centers.models import Schedule, Booking, Section
 from .models import Partner
+from django.utils.timezone import now, timedelta
+from django.contrib import messages
 
 
 def register_partner(request):
@@ -65,51 +71,59 @@ def manage_schedule(request):
 
 
 @login_required
+@user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
 def schedule_details(request, schedule_id):
     """
-    Отображение деталей расписания (кто записался).
+    Отображает подробности расписания для партнера и список бронирований.
     """
-    try:
-        partner = request.user.partner
-        if not partner.is_active:
-            return redirect('login_partner')
-    except Partner.DoesNotExist:
-        return redirect('login_partner')
-
-    # Проверяем, что расписание связано с секциями партнера
+    partner = request.user.partner
     sections = Section.objects.filter(center=partner.center)
     schedule = get_object_or_404(Schedule, id=schedule_id, section__in=sections)
-    bookings = Booking.objects.filter(schedule=schedule)
-    return render(request, 'view_bookings.html', {'schedule': schedule, 'bookings': bookings})
 
+    # Фильтрация бронирований
+    status_filter = request.GET.get('status')
+    if status_filter:
+        bookings = Booking.objects.filter(schedule=schedule, status=status_filter)
+    else:
+        bookings = Booking.objects.filter(schedule=schedule)
 
+    # Расчет количества свободных мест
+    available_slots = schedule.total_slots - bookings.count()
+
+    statuses = Booking.STATUS_CHOICES
+    return render(
+        request,
+        'schedule_details.html',
+        {
+            'schedule': schedule,
+            'bookings': bookings,
+            'statuses': statuses,
+            'available_slots': available_slots,
+        }
+    )
 @login_required
 @user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
 def add_schedule(request):
     partner = request.user.partner
-    sections = Section.objects.filter(center=partner.center)  # Получаем секции, принадлежащие центру партнера
+    sections_queryset = Section.objects.filter(center=partner.center)  # Только секции текущего партнера
 
     if request.method == 'POST':
-        form = ScheduleForm(request.POST)
+        form = ScheduleForm(request.POST, sections_queryset=sections_queryset)
         if form.is_valid():
             schedule = form.save(commit=False)
-            section_id = request.POST.get('section')  # Получаем выбранную секцию из POST-запроса
-            try:
-                schedule.section = sections.get(id=section_id)  # Проверяем, что секция относится к партнеру
-                schedule.save()
-                return redirect('manage_schedule')
-            except Section.DoesNotExist:
-                form.add_error('section', 'Invalid section for your center.')
+            schedule.save()
+            messages.success(request, "Schedule successfully added!")
+            return redirect('manage_schedule')
     else:
-        form = ScheduleForm()
-        form.fields['section'].queryset = sections  # Ограничиваем выбор секций только центром партнера
+        form = ScheduleForm(sections_queryset=sections_queryset)
 
     return render(request, 'add_schedule.html', {'form': form})
+
 
 @login_required
 def edit_schedule(request, schedule_id):
     """
-    Редактирование существующего расписания.
+    Редактирование расписания, включая переключение статуса.
     """
     try:
         partner = request.user.partner
@@ -120,11 +134,35 @@ def edit_schedule(request, schedule_id):
 
     sections = Section.objects.filter(center=partner.center)
     schedule = get_object_or_404(Schedule, id=schedule_id, section__in=sections)
+
     if request.method == 'POST':
-        form = ScheduleForm(request.POST, instance=schedule)
+        if 'toggle_status' in request.POST:  # Обработка нажатия кнопки "Set to Active/Cancelled"
+            if schedule.status == Schedule.CANCELLED:
+                schedule.status = Schedule.ACTIVE
+            else:
+                if schedule.start_time - timezone.now() <= timedelta(hours=1):
+                    messages.error(request, "Cannot cancel schedule less than an hour before start.")
+                else:
+                    schedule.status = Schedule.CANCELLED
+            schedule.save()
+            messages.success(request, f"Schedule status updated to {schedule.get_status_display()}.")
+            return redirect('edit_schedule', schedule_id=schedule_id)
+
+        # Обработка сохранения формы
+        form = ScheduleForm(request.POST, instance=schedule, sections_queryset=sections)
         if form.is_valid():
             form.save()
+            messages.success(request, "Schedule successfully updated!")
             return redirect('manage_schedule')
     else:
-        form = ScheduleForm(instance=schedule)
-    return render(request, 'edit_schedule.html', {'form': form})
+        form = ScheduleForm(instance=schedule, sections_queryset=sections)
+
+    return render(request, 'edit_schedule.html', {'form': form, 'schedule': schedule})
+
+
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
+def center_profile(request):
+    partner = request.user.partner
+    center = partner.center  # Предполагается, что партнер привязан к одному центру
+    return render(request, 'center_profile.html', {'center': center})

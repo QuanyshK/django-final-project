@@ -4,6 +4,7 @@ from users.models import Client, Child
 from django.apps import apps
 from django.utils import timezone
 from datetime import timedelta
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 class Category(models.Model):
@@ -46,10 +47,41 @@ class Section(models.Model):
         return self.name
     
 class Schedule(models.Model):
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)  
-    start_time = models.DateTimeField() 
-    end_time = models.DateTimeField() 
-    total_slots = models.PositiveIntegerField()  
+    ACTIVE = 'active'
+    CANCELLED = 'cancelled'
+
+    STATUS_CHOICES = [
+        (ACTIVE, 'Active'),
+        (CANCELLED, 'Cancelled'),
+    ]
+
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    total_slots = models.PositiveIntegerField()
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=ACTIVE,
+    )
+
+
+    def clean(self):
+        super().clean()
+
+        # Проверка, что время начала раньше времени окончания
+        if self.start_time >= self.end_time:
+            raise ValidationError("Start time must be earlier than end time.")
+
+        # Проверка пересечения с другими расписаниями
+        overlapping_schedules = Schedule.objects.filter(
+            section=self.section,
+            start_time__lt=self.end_time,
+            end_time__gt=self.start_time
+        ).exclude(id=self.id)
+
+        if overlapping_schedules.exists():
+            raise ValidationError("This schedule overlaps with an existing schedule.")
 
     def __str__(self):
         return f"{self.section.name} | {self.start_time}"

@@ -1,14 +1,42 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Add Schedule{% endblock %}
 
 {% block content %}
-<h2>Add Schedule</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add</button>
-</form>
-{% if error %}
-<p style="color: red;">{{ error }}</p>
-{% endif %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add Schedule</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.section.label_tag }}
+            {{ form.section }}
+            {% for error in form.section.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.start_time.label_tag }}
+            {{ form.start_time }}
+            {% for error in form.start_time.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.end_time.label_tag }}
+            {{ form.end_time }}
+            {% for error in form.end_time.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.total_slots.label_tag }}
+            {{ form.total_slots }}
+            {% for error in form.total_slots.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Schedule</button>
+    </form>
+</div>
 {% endblock %}
-
