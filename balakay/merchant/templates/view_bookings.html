@@ -5,6 +5,8 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="mb-4">Schedule Details</h2>
+    <!-- {# Page header displaying the title "Schedule Details" #} -->
+
 
     <div class="card">
         <div class="card-body">
@@ -16,6 +18,7 @@
 
     <h3 class="mt-4">Booked Users:</h3>
     {% if bookings %}
+    <!-- {# Checks if there are any bookings associated with the schedule #} -->
         <ul class="list-group">
             {% for booking in bookings %}
                 <li class="list-group-item">
@@ -26,6 +29,7 @@
             {% endfor %}
         </ul>
     {% else %}
+    <!-- {# Message displayed if no bookings are available for the schedule #} -->
         <p class="text-muted">No bookings available for this schedule.</p>
     {% endif %}
 

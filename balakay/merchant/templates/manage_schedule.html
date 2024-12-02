@@ -11,6 +11,7 @@
     </div>
 
     {% if schedules %}
+    <!-- # Check if the schedules variable contains any schedule objects # -->
         <table class="table table-bordered table-striped">
             <thead class="thead-light">
                 <tr>
@@ -24,6 +25,7 @@
             </thead>
             <tbody>
                 {% for schedule in schedules %}
+          <!-- {# Loop through each schedule in the schedules list #} -->
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ schedule.section.name }}</td>
@@ -39,6 +41,7 @@
             </tbody>
         </table>
     {% else %}
+    <!-- {# Message displayed if no schedules are available #} -->
         <p class="text-muted">No schedules found. Click "Add Schedule" to create one.</p>
     {% endif %}
 </div>

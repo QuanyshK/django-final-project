@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from centers.models import Schedule, Center
 
 class PartnerRegistrationForm(forms.ModelForm):
+    # Fields for password input
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
+    # Dropdown for selecting a center, required for partners
     center = forms.ModelChoiceField(queryset=Center.objects.all(), required=True)
 
 
@@ -18,6 +20,7 @@ class PartnerRegistrationForm(forms.ModelForm):
         confirm_password = cleaned_data.get("confirm_password")
 
         if password != confirm_password:
+            # Raise a validation error if passwords do not match
             raise forms.ValidationError("Passwords do not match.")
         return cleaned_data
 
