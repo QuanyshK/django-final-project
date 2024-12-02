@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Schedule{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Edit Schedule</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+    <hr>
+    <h4>Status: {{ schedule.get_status_display }}</h4>
+    <form method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" name="toggle_status" class="btn {% if schedule.status == 'active' %}btn-danger{% else %}btn-success{% endif %}">
+            {% if schedule.status == 'active' %}Set to Cancelled{% else %}Set to Active{% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}
