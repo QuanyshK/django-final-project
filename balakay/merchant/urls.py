@@ -8,6 +8,7 @@ from .views import (
     schedule_details,
     center_profile
 )
+from .views import SectionAPIView, ScheduleAPIView
 
 urlpatterns = [
     path('register/', register_partner, name='register_partner'),
@@ -17,4 +18,6 @@ urlpatterns = [
     path('schedule/<int:schedule_id>/edit/', edit_schedule, name='edit_schedule'),
     path('schedule/<int:schedule_id>/', schedule_details, name='schedule_details'),
     path('center_profile/', center_profile, name='center_profile'),
+    path('sections/', SectionAPIView.as_view(), name='sections-api'),
+    path('schedules/', ScheduleAPIView.as_view(), name='schedules-api'),
 ]

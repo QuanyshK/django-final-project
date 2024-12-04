@@ -37,8 +37,8 @@ urlpatterns = [
     path('center/<int:center_id>/', center_details, name='center_details'),
     path('book/<int:schedule_id>/', book_schedule_view, name='book_schedule'),
     path('booking-success/', booking_success_view, name='booking_success'),
-    path('my-schedule/', user_bookings, name='my_schedule'),
+    path('my-schedule/', user_bookings, name='my-schedule'),
     path('favorites/', favorite_sections_view, name='favorite_sections'),
     path('past-bookings/', past_bookings_view, name='past_bookings'),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

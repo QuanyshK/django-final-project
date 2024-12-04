@@ -51,7 +51,7 @@
                         </td>
                         <td>
                             {% if booking.status == 'pending' %}
-                                <form method="post" action="{% url 'user_bookings' %}">
+                                <form method="post" action="{% url 'my-schedule' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="booking_id" value="{{ booking.id }}">
                                     <input type="hidden" name="child_id" value="{{ booking.child.id }}">

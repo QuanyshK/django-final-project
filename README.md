@@ -1,6 +1,6 @@
 # Balakay
 
-Balakay is a Django-based web application designed for parents to manage their profiles, children’s information, and recreational activity subscriptions. With a user-friendly interface, Balakay simplifies scheduling, booking, and tracking activities for parents and recreational centers. The platform provides a seamless experience for managing both parent and child profiles, as well as activity subscriptions.
+Balakay is a Django-based web application designed for parents and recreational centers to manage profiles, children’s information, activity subscriptions, and bookings. It also includes an analytics dashboard, subscription tracking, and a custom admin panel, providing a seamless experience for both users and administrators.
 
 ## Table of Contents
 
@@ -9,80 +9,118 @@ Balakay is a Django-based web application designed for parents to manage their p
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
 - [Usage](#usage)
 - [Built With](#built-with)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
 ## Introduction
 
-Balakay offers a comprehensive solution for parents to manage their children’s activity subscriptions and bookings. It provides an efficient way to handle recreational schedules, browse available centers, and track bookings. Administrators can also leverage Django's built-in admin interface to manage users, subscriptions, and activities.
+Balakay simplifies the management of recreational activities, subscriptions, and bookings for both parents and centers. The platform integrates advanced analytics, a subscription system, and booking functionality into a scalable and secure solution.
 
 ### Core Modules:
 
-- **Users Management**: Parents can register, log in, and update their profiles.
-- **Child Management**: Parents can add and manage children's information, including name, birthdate, and gender.
-- **Activity Subscription and Booking**: Subscribe to activities for children, book schedules, and track usage.
-- **Admin Interface**: Manage users, subscriptions, and activities with Django's admin tools.
+- **User Management**: Parents can register, log in, and manage profiles for themselves and their children.
+- **Subscription System**: Flexible subscription plans tailored to various needs, with tracking of usage and remaining visits.
+- **Activity Management**: Book and track activities for children.
+- **Admin Panel for Partners**: Partners can manage their sections, schedules, and activities.
+- **Analytics Dashboard**: Visualize key metrics like user registrations, booking stats, and activity trends.
 
 ## Features
 
-- **User Registration and Authentication**: Parents can sign up, log in, update their profiles, and manage child-related activities.
-- **Child Management**: Parents can easily manage their children's information (name, birthdate, gender).
-- **Activity Subscription**: Subscribe to children's recreational activities, track usage, and manage subscription details.
-- **Booking System**: Browse available centers, book activities, and manage bookings.
-- **Admin Control**: Full admin control over users, subscriptions, and center schedules via the Django admin interface.
+- **Interactive Analytics Dashboard**:
+  - Visualize user registrations, bookings, and center activity.
+  - Real-time data filtering and custom charts.
+
+- **Custom Admin Panel**:
+  - Role-based management for partners and administrators.
+  - Full control over centers, schedules, and user subscriptions.
+
+- **Flexible Subscription System**:
+  - Multiple subscription plans with daily, monthly, and premium visit options.
+  - Track active subscriptions, remaining days, and visits.
+
+- **Booking System**:
+  - Schedule and book activities directly through the platform.
+  - Manage user bookings and monitor activity.
+
+- **User Authentication**:
+  - Secure login with JWT-based API authentication.
+  - Profile management for parents and children.
+
+- **API Integration**:
+  - RESTful APIs for accessing and managing data.
+  - Documented with Swagger for easy third-party integration.
+
+- **Performance Optimization**:
+  - Redis caching for faster data retrieval.
+  - Optimized query handling for large-scale datasets.
 
 ## Project Structure
 
-### 1. Users Application
+### 1. **Users Application**
+Handles user registration, authentication, and profile management.
 
-This application handles user management, including client registration, login, profile management, and child information.
+- **Models**:
+  - `Client`: Stores parent profiles.
+  - `Child`: Stores children’s data.
+  - `UserSubscription`: Manages subscriptions for users and children.
 
-**Models**:
+- **Views**:
+  - `profile_view`: Displays user profiles and active subscriptions.
+  - `add_child_view`: Allows parents to manage children's information.
+  - `subscription_detail`: Provides detailed information on active subscriptions.
 
-- `Client`: Parent profiles.
-- `Child`: Stores children’s data.
-- `UserSubscription`: Manages activity subscriptions for users.
+---
 
-**Views**:
+### 2. **Subscriptions Application**
+Manages flexible subscription packages for activities.
 
-- `register_client`: Handles user registration.
-- `login_user`: User login view.
-- `logout_user`: Logs the user out.
-- `profile_view`: Displays user profiles.
-- `add_child_view`: Manages children’s data.
+- **Models**:
+  - `Subscription`: Defines subscription plans with details like price, duration, and visit limits.
+  - `AgeGroup`: Links subscription plans to specific age groups.
 
-**Forms**:
+- **Views**:
+  - `SubscriptionViewSet`: API for managing subscriptions.
+  - `AgeGroupViewSet`: API for managing age groups.
 
-- `ClientRegistrationForm`: For new user registration.
-- `ChildForm`: Allows parents to add children to their profiles.
+---
 
-### 2. Subscriptions Application
+### 3. **Centers Application**
+Manages centers, activities, and bookings.
 
-This handles subscription management for activities.
+- **Models**:
+  - `Center`: Represents recreational centers.
+  - `Section`: Subdivisions within centers.
+  - `Category`: Types of activities.
+  - `Schedule`: Activity schedules.
+  - `Booking`: User bookings.
 
-**Model**:
+- **Views**:
+  - `home_view`: Displays available categories and activities.
+  - `book_schedule_view`: Handles booking activities for children.
+  - `user_bookings`: Displays the user’s bookings.
 
-- `Subscription`: Stores details about subscription packages (name, price, duration, age group).
+---
 
-### 3. Centers Application
+### 4. **Merchant Application**
+Provides tools for partners (e.g., recreational centers).
 
-This module manages centers, schedules, and activity bookings.
+- **Views**:
+  - `manage_schedule`: Allows partners to manage schedules.
+  - `add_schedule`: Partners can add new activity schedules.
 
-**Models**:
+---
 
-- `Center`: Represents recreational centers.
-- `Section`: Subdivisions of centers.
-- `Category`: Types of activities.
-- `Schedule`: Holds activity schedules.
-- `Booking`: Manages user bookings.
+### 5. **Analytics Application**
+Provides an interactive dashboard for monitoring key metrics.
 
-**Views**:
+- **Features**:
+  - Charts for user registrations, center activity, and bookings.
+  - Top user activity analysis.
 
-- `home_view`: Displays the homepage with available categories.
-- `section_view`: Shows details about a center's sections.
-- `book_schedule_view`: Handles activity bookings.
-- `center_list_view`: Lists available centers.
-- `user_bookings`: Displays bookings made by the user.
+---
 
 ## Getting Started
 
@@ -90,19 +128,12 @@ This module manages centers, schedules, and activity bookings.
 
 - Python 3.12+
 - Django 5.0+
-- PostgreSQL (or any preferred database)
+- Docker (optional for deployment)
+- PostgreSQL or SQLite (for database)
 
-## Usage
+### Installation
 
-- **Register**: Create a parent account.
-- **Add Children**: After logging in, add your children's details.
-- **Browse Centers**: Explore the list of available centers and their schedules.
-- **Book Activities**: Select activities and book schedules for your children.
-- **Manage Profile**: Update your profile or child’s information anytime.
-- **Track Subscriptions**: View and track activity subscriptions and their usage.
-
-## Built With
-
-- **Django** — The web framework for rapid development.
-- **Bootstrap** — For responsive design.
-- **HTML/CSS** — Frontend development.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/balakay.git
+   cd balakay

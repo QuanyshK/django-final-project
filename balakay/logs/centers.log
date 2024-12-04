@@ -80,3 +80,9 @@ INFO 2024-12-03 00:05:11,867 signals Schedule updated: 18 - Section: Dombyra sec
 INFO 2024-12-03 00:05:49,963 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
 INFO 2024-12-03 00:05:50,796 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
 INFO 2024-12-03 00:06:09,818 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 20:46:30+05:00
+INFO 2024-12-04 03:06:37,600 signals Schedule updated: 16 - Section: Gym, Start: 2024-12-04 00:16:56+05:00
+INFO 2024-12-04 06:05:26,722 signals Schedule updated: 16 - Section: Gym, Start: 2024-12-04 00:16:56+05:00
+INFO 2024-12-04 06:06:08,477 signals Schedule created: 26 - Section: Gym, Start: 2024-12-04 15:07:00+05:00
+INFO 2024-12-04 06:06:38,148 signals Booking created: 75 - User: test user, Section: Gym
+INFO 2024-12-04 06:06:38,150 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - User: test user, Section: Dombyra section
