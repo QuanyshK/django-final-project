@@ -1,0 +1,801 @@
+[
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Partners",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$nVo6HMxdYJ5MsOu6bLuZiH$yV8ENQtJ1/hPeqRs710lKflG/SLp6UeJl6W0i+y1NKQ=",
+        "last_login": "2024-12-05T19:54:30.625Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-10-20T19:09:26.567Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$stC7Ni4Y8xhswp7buvEkgX$GKYGlY8oUlUlKgEa/rwnlHUkIlCV/NAkQkUrX85Kap0=",
+        "last_login": "2024-10-21T11:06:35.557Z",
+        "is_superuser": false,
+        "username": "zhanibek",
+        "first_name": "",
+        "last_name": "",
+        "email": "zhanibekbeisenov8@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-21T07:50:51.794Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$XpCr05U6SPzGtGR4En0GBF$M9ToGRTGAXdLHsGysd3r+RlYgwz1H1r2QgEkSB1ok88=",
+        "last_login": "2024-10-21T16:01:43.207Z",
+        "is_superuser": false,
+        "username": "Iliyas",
+        "first_name": "",
+        "last_name": "",
+        "email": "iliyas0420@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-21T15:44:21.344Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$NeANNpnzPa7jFNuOR9PxAI$DdzF8l2nB9iaspLPtK+3rhS//noDpR2nMYQTWX2Rtlc=",
+        "last_login": "2024-10-22T19:12:02.990Z",
+        "is_superuser": false,
+        "username": "Zhan",
+        "first_name": "",
+        "last_name": "",
+        "email": "d8496577@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-22T13:42:44.157Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$N3jj7OJUzwFfNPBEBquiFh$bGiwRDZ+4OXs67nIpEYzfiTTXGnrfxWKmBNdJaZTuPY=",
+        "last_login": "2024-11-20T18:34:20.553Z",
+        "is_superuser": false,
+        "username": "ttadmin",
+        "first_name": "",
+        "last_name": "",
+        "email": "user@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-23T01:11:02.962Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$tMaNvzpd0JyAjvyK7mYvhA$m9B31ibepBCf+z57I3wXfMIFsgcZFaFP31wonrhc8Go=",
+        "last_login": "2024-10-23T05:47:17.583Z",
+        "is_superuser": false,
+        "username": "dos",
+        "first_name": "",
+        "last_name": "",
+        "email": "d_bolatuly@kbtu.kz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-23T05:47:07.677Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$NQzF7AZWgilwFWVRuwTxdu$UaLWCga55YB5Q4kuEfSxLbdfstIYwx1hXDKLvvEXcTk=",
+        "last_login": "2024-12-04T06:03:16.034Z",
+        "is_superuser": false,
+        "username": "test user",
+        "first_name": "",
+        "last_name": "",
+        "email": "leva326645@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-01T09:31:06.065Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$tO0PEAp7mBAdaAAvTTmD7k$IBlg9l6WENBoL0caR5I6djOJ5ynJoTzGmymRmgfy5MA=",
+        "last_login": "2024-11-28T08:11:47.051Z",
+        "is_superuser": true,
+        "username": "adm",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-11-23T11:17:50.066Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$O9wD3KrX6PSnHLGlBn47wp$d7g6Pf96mEdu3ozAjQ8U6w7LNKMvgBXkSn80QocsI7Q=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Gena",
+        "first_name": "",
+        "last_name": "",
+        "email": "l@g.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-23T16:19:47.338Z",
+        "groups": [
+            [
+                "Partners"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Lf4wzAKn4NOGmZtKQjNBDM$oJAzx+GBsE2iWiNdv/Pr2xsKzQZnhx457XcW4t9zbSA=",
+        "last_login": "2024-12-04T06:13:34.637Z",
+        "is_superuser": true,
+        "username": "lena",
+        "first_name": "",
+        "last_name": "",
+        "email": "l@g.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-11-23T16:21:38Z",
+        "groups": [
+            [
+                "Partners"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$6BMEizIr00PADWm51kuWtt$rryxH2HC6DDhjopSnQelg+xY0j7B3MS8GzGtKSrKVIY=",
+        "last_login": "2024-12-02T18:30:32.643Z",
+        "is_superuser": false,
+        "username": "zhake",
+        "first_name": "",
+        "last_name": "",
+        "email": "zhanibekmyrzakhan@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-01T19:35:51.771Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5o2qvyc72kmvkfp2hdcmwv7itzt06j88",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP8lM4rq5tHAyM43RI7t0AJKpKadEP-OInWA9e50bxVx3-a4N1njwuqivDr9soT0lNIFP7Dcq6ZatnVJuif6sE3fKsvrerR_gxnb3LfJjTL4DOdAPmMyhABAzNmTGAOOJ7DW5FGYswtMYTIDj2KQrPUI6vMF_kg4hQ:1t3bL9:HgLy1AE2PD4nRE5VWDcEH1kWZPH2JGWnBxyqBu8iAgU",
+        "expire_date": "2024-11-06T13:23:55.097Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "89bqht92tsf3crwh8ovswte2k420fl68",
+    "fields": {
+        "session_data": ".eJxVjEEOgjAQRe_StWmmZQasS_ecgUxnWosaSCisjHdXEha6_e-9_zIDb2sZtpqWYVRzMY05_W6R5ZGmHeidp9tsZZ7WZYx2V-xBq-1nTc_r4f4dFK7lW0vwmOGMTWwZJcTONZ5UVJGTIyIPkpGJKTAo5pgBWtdSBwmTBxLz_gDhzje4:1t2uql:VgY2tG_Fmau0c6xZ9x9jL7ncIxNSs97J6gSermbjPDQ",
+        "expire_date": "2024-11-04T16:01:43.213Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hsezkmamfgpwq5jns5gb3rc3ogku89dm",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP8lM4rq5tHAyM43RI7t0AJKpKadEP-OInWA9e50bxVx3-a4N1njwuqivDr9soT0lNIFP7Dcq6ZatnVJuif6sE3fKsvrerR_gxnb3LfJjTL4DOdAPmMyhABAzNmTGAOOJ7DW5FGYswtMYTIDj2KQrPUI6vMF_kg4hQ:1tDpWu:KwnaTBQr6JxsMrjR2U2IGUWqHAsCGxeI8geQ69SFQO8",
+        "expire_date": "2024-12-04T18:34:20.560Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jsud1e9sb8dag01kjbwzlfno7dunmmx3",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2pBKaQsu3fcMZGaYkaqBpLQr492VpAtN_uq_l_dSAfYthb3yGpaoLuqsTr8fAj04NxDvkG9FU8nbuqBuij5o1XOJ_Lwe7l8gQU0tS2AQiXtxAwORt8Ru7Iyz0RhvJxG0Ew1eOFI_Cop06Fz_nSfPaNT7AxY4OQ4:1t2qOU:i-4xAuYkdXB9IFehrtUTcH-BF7DXy25g6vp-lL2lBb4",
+        "expire_date": "2024-11-04T11:16:14.616Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "opzstusp3r34ez4e3go48hr9sv6jagc7",
+    "fields": {
+        "session_data": ".eJxVjDsOgzAQBe-ydWSBjT9Qps8Z0FvvOpBEIPGpotw9QqJI2pnRvKnHvg39vurSj0IdJbr8MkZ-6nQIeWC6zybP07aMbI7EnHY1t1n0dT3bv8GAdaCOlNsMboqy5traKtuCgCzJupgigqsj4KHSFK-hFQY7hyoUH1qpfE2fLyhhORU:1t97Id:80IIWrL-EtbTJUPqdqi7KUSws4-9ug9EUyCW0lS4uAc",
+        "expire_date": "2024-11-21T18:32:07.197Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "p0ysfw26stas895trel5v1a7jrjy466c",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCoUBiX7nsGMjCMVA0kpV0Z765NutDtf-_9lwi4rSVsPS9hJnERVpx-t4jpkesO6I711mRqdV3mKHdFHrTLqVF-Xg_376BgL98aGcgkZf2YlFYOvAMGlY1C0JCRvUmDZhrjmS0QeeetU2Bo4EhRUxbvD97dOCQ:1t3KIU:2RB4Wx493WUw8uyVrXT5urKo_-zRiynWUM0vxzbWqog",
+        "expire_date": "2024-11-05T19:12:02.997Z"
+    }
+},
+{
+    "model": "centers.category",
+    "pk": 2,
+    "fields": {
+        "name": "Music",
+        "description": "Music is good"
+    }
+},
+{
+    "model": "centers.category",
+    "pk": 3,
+    "fields": {
+        "name": "Science",
+        "description": "Science is good"
+    }
+},
+{
+    "model": "centers.category",
+    "pk": 4,
+    "fields": {
+        "name": "Sport",
+        "description": "Sport is good"
+    }
+},
+{
+    "model": "centers.center",
+    "pk": 1,
+    "fields": {
+        "partner": null,
+        "manager_name": "Kuanysh",
+        "manager_phone": "87777777777",
+        "name": "Sun center",
+        "logo": "storage/Без_имени.png",
+        "subtitle": null,
+        "description": "Our center founded for kids in different sections as chess, music etc. All sections is free for any child! Welcome!",
+        "city": "Almay",
+        "address": "street Tolebi 59"
+    }
+},
+{
+    "model": "centers.center",
+    "pk": 2,
+    "fields": {
+        "partner": null,
+        "manager_name": "Kuanysh",
+        "manager_phone": "87777777777",
+        "name": "MusiKIDS",
+        "logo": "storage/Без_имени_5wbkhnf.png",
+        "subtitle": null,
+        "description": "Music sections for kids",
+        "city": "Almaty",
+        "address": "Al-farabi 78/1"
+    }
+},
+{
+    "model": "centers.center",
+    "pk": 3,
+    "fields": {
+        "partner": null,
+        "manager_name": "Admin Nazar",
+        "manager_phone": "1234564789",
+        "name": "Dojo",
+        "logo": "storage/Screenshot_from_2024-10-22_03-25-08.png",
+        "subtitle": "test test test",
+        "description": "test test test",
+        "city": "Almaty",
+        "address": "Turkevayev 246"
+    }
+},
+{
+    "model": "centers.center",
+    "pk": 4,
+    "fields": {
+        "partner": null,
+        "manager_name": "Admin Danabala",
+        "manager_phone": "87755525589",
+        "name": "Danabala",
+        "logo": "storage/Screenshot_from_2024-10-19_15-51-38.png",
+        "subtitle": "danabala",
+        "description": "danabala testing app",
+        "city": "Astana",
+        "address": "Turan 159"
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 1,
+    "fields": {
+        "center": 1,
+        "category": 3,
+        "name": "Chess section",
+        "description": "Basic course for chess introduction.",
+        "duration_minutes": 50,
+        "min_age": 5,
+        "max_age": 15
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 2,
+    "fields": {
+        "center": 1,
+        "category": null,
+        "name": "Chess for very littles",
+        "description": "Chess for very littles",
+        "duration_minutes": 20,
+        "min_age": 2,
+        "max_age": 7
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 3,
+    "fields": {
+        "center": 2,
+        "category": 2,
+        "name": "Dombyra in 30 days",
+        "description": "Learn to play dombyra in 30 days",
+        "duration_minutes": 45,
+        "min_age": 8,
+        "max_age": 15
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 4,
+    "fields": {
+        "center": 3,
+        "category": 2,
+        "name": "Dombyra section",
+        "description": "test test test",
+        "duration_minutes": 75,
+        "min_age": 3,
+        "max_age": 10
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 5,
+    "fields": {
+        "center": 4,
+        "category": 3,
+        "name": "Math for kids",
+        "description": "Math math, well well well",
+        "duration_minutes": 45,
+        "min_age": 3,
+        "max_age": 11
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 6,
+    "fields": {
+        "center": 3,
+        "category": 4,
+        "name": "Gym",
+        "description": "Gym is excellent",
+        "duration_minutes": 90,
+        "min_age": 4,
+        "max_age": 15
+    }
+},
+{
+    "model": "centers.section",
+    "pk": 7,
+    "fields": {
+        "center": 3,
+        "category": 2,
+        "name": "Dombyra",
+        "description": "Dombyra is good",
+        "duration_minutes": 45,
+        "min_age": 3,
+        "max_age": 10
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 16,
+    "fields": {
+        "section": 6,
+        "start_time": "2024-12-03T19:16:56Z",
+        "end_time": "2024-12-03T19:17:02Z",
+        "total_slots": 10,
+        "status": "active"
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 18,
+    "fields": {
+        "section": 4,
+        "start_time": "2024-12-04T15:46:30Z",
+        "end_time": "2024-12-05T15:49:40Z",
+        "total_slots": 13,
+        "status": "active"
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 20,
+    "fields": {
+        "section": 1,
+        "start_time": "2024-12-10T19:00:00Z",
+        "end_time": "2024-12-11T19:00:00Z",
+        "total_slots": 13,
+        "status": "active"
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 21,
+    "fields": {
+        "section": 5,
+        "start_time": "2024-12-10T19:00:00Z",
+        "end_time": "2024-12-11T19:00:00Z",
+        "total_slots": 14,
+        "status": "active"
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 22,
+    "fields": {
+        "section": 5,
+        "start_time": "2024-12-10T19:00:00Z",
+        "end_time": "2024-12-11T19:00:00Z",
+        "total_slots": 18,
+        "status": "active"
+    }
+},
+{
+    "model": "centers.schedule",
+    "pk": 26,
+    "fields": {
+        "section": 6,
+        "start_time": "2024-12-04T10:07:00Z",
+        "end_time": "2024-12-04T11:07:00Z",
+        "total_slots": 44,
+        "status": "active"
+    }
+},
+{
+    "model": "subscriptions.agegroup",
+    "pk": 1,
+    "fields": {
+        "age_range": "4 - 7",
+        "description": null
+    }
+},
+{
+    "model": "subscriptions.agegroup",
+    "pk": 2,
+    "fields": {
+        "age_range": "0 - 4",
+        "description": null
+    }
+},
+{
+    "model": "subscriptions.agegroup",
+    "pk": 3,
+    "fields": {
+        "age_range": "7 - 16",
+        "description": null
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 1,
+    "fields": {
+        "active": true,
+        "name": "12 months / 0-4",
+        "price": "500000.00",
+        "duration_text": "12 months",
+        "age_group": 2,
+        "total_days": 360,
+        "freeze_days": 40,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 2,
+    "fields": {
+        "active": true,
+        "name": "12 months / 4-7",
+        "price": "480000.00",
+        "duration_text": "12 months",
+        "age_group": 1,
+        "total_days": 360,
+        "freeze_days": 40,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 3,
+    "fields": {
+        "active": true,
+        "name": "12 months / 7-16",
+        "price": "460000.00",
+        "duration_text": "12 months",
+        "age_group": 3,
+        "total_days": 360,
+        "freeze_days": 40,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 4,
+    "fields": {
+        "active": true,
+        "name": "6 months / 0-4",
+        "price": "300000.00",
+        "duration_text": "6 month",
+        "age_group": 2,
+        "total_days": 180,
+        "freeze_days": 20,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 5,
+    "fields": {
+        "active": true,
+        "name": "6 months / 4-7",
+        "price": "280000.00",
+        "duration_text": "6 month",
+        "age_group": 1,
+        "total_days": 180,
+        "freeze_days": 20,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 6,
+    "fields": {
+        "active": true,
+        "name": "6 months / 7-16",
+        "price": "260000.00",
+        "duration_text": "6 month",
+        "age_group": 3,
+        "total_days": 180,
+        "freeze_days": 20,
+        "daily_visits": 2,
+        "monthly_visits": 30,
+        "premium_monthly_visits": 5
+    }
+},
+{
+    "model": "users.client",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "zhanibek"
+        ],
+        "first_name": "Zhanibek",
+        "last_name": "Beisenov",
+        "phone_number": "87779955905",
+        "city": "Almaty"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "Iliyas"
+        ],
+        "first_name": "Iliyas",
+        "last_name": "Otegen",
+        "phone_number": "87775306414",
+        "city": "Almaty"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "Zhan"
+        ],
+        "first_name": "z",
+        "last_name": "m",
+        "phone_number": "324234",
+        "city": "a"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "ttadmin"
+        ],
+        "first_name": "testuanysh",
+        "last_name": "testouv",
+        "phone_number": "87472572614",
+        "city": "Almaty"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "dos"
+        ],
+        "first_name": "Dosbol",
+        "last_name": "Bolatuly",
+        "phone_number": "87761690215",
+        "city": "Almaty"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "test user"
+        ],
+        "first_name": "kuanysh",
+        "last_name": "kobeisinuly",
+        "phone_number": "87752575991",
+        "city": "Almaty"
+    }
+},
+{
+    "model": "users.client",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "zhake"
+        ],
+        "first_name": "zhake",
+        "last_name": "m",
+        "phone_number": "34534",
+        "city": "алматы"
+    }
+},
+{
+    "model": "users.child",
+    "pk": 8,
+    "fields": {
+        "parent": 7,
+        "first_name": "Test",
+        "last_name": "Child",
+        "birth_date": "2016-08-09",
+        "gender": "male"
+    }
+},
+{
+    "model": "users.child",
+    "pk": 9,
+    "fields": {
+        "parent": 7,
+        "first_name": "Test 2",
+        "last_name": "Child",
+        "birth_date": "2016-08-10",
+        "gender": "male"
+    }
+},
+{
+    "model": "users.child",
+    "pk": 10,
+    "fields": {
+        "parent": 7,
+        "first_name": "Test 3",
+        "last_name": "Testuly",
+        "birth_date": "2023-06-30",
+        "gender": "male"
+    }
+},
+{
+    "model": "users.usersubscription",
+    "pk": 12,
+    "fields": {
+        "parent": 7,
+        "child": 8,
+        "subscription_type": 3,
+        "activation_date": "2024-11-06T19:14:45Z",
+        "expiration_date": "2025-09-08T19:14:45Z",
+        "total_days": 306,
+        "freeze_days": 40,
+        "daily_visits_limit": 2,
+        "total_visits": 28,
+        "used_visits": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "users.usersubscription",
+    "pk": 13,
+    "fields": {
+        "parent": 7,
+        "child": 9,
+        "subscription_type": 3,
+        "activation_date": "2024-11-06T19:15:20Z",
+        "expiration_date": "2025-11-01T19:15:20Z",
+        "total_days": 360,
+        "freeze_days": 40,
+        "daily_visits_limit": 2,
+        "total_visits": 28,
+        "used_visits": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "merchant.partner",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "Zhan"
+        ],
+        "name": "lol",
+        "center": null,
+        "contact_email": "z@gm.com",
+        "phone_number": "65757",
+        "is_active": false,
+        "created_at": "2024-11-23T11:44:53.128Z"
+    }
+},
+{
+    "model": "merchant.partner",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "lena"
+        ],
+        "name": "DANABALA",
+        "center": 3,
+        "contact_email": "lena@gm.com",
+        "phone_number": "343242",
+        "is_active": true,
+        "created_at": "2024-11-23T16:21:39.299Z"
+    }
+}
+]

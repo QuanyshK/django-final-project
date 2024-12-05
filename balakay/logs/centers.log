@@ -95,3 +95,93 @@ INFO 2024-12-04 09:30:29,016 signals FavoriteSection created: 18 - Client: test 
 INFO 2024-12-04 09:31:02,409 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
 INFO 2024-12-04 09:31:03,275 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
 INFO 2024-12-05 12:01:20,996 signals Booking updated: 75 - User: test user, Section: Gym
+INFO 2024-12-05 23:54:41,513 signals Category created: 2 - Music
+INFO 2024-12-05 23:54:42,188 signals Category created: 3 - Science
+INFO 2024-12-05 23:54:42,948 signals Category created: 4 - Sport
+INFO 2024-12-05 23:54:43,766 signals Center created: 1 - Sun center
+INFO 2024-12-05 23:54:44,585 signals Center created: 2 - MusiKIDS
+INFO 2024-12-05 23:54:45,405 signals Center created: 3 - Dojo
+INFO 2024-12-05 23:54:46,224 signals Center created: 4 - Danabala
+INFO 2024-12-05 23:54:47,657 signals Section created: 1 - Chess section
+INFO 2024-12-05 23:54:48,374 signals Section created: 2 - Chess for very littles
+INFO 2024-12-05 23:54:49,116 signals Section created: 3 - Dombyra in 30 days
+INFO 2024-12-05 23:54:49,778 signals Section created: 4 - Dombyra section
+INFO 2024-12-05 23:54:50,439 signals Section created: 5 - Math for kids
+INFO 2024-12-05 23:54:51,164 signals Section created: 6 - Gym
+INFO 2024-12-05 23:54:51,959 signals Section created: 7 - Dombyra
+INFO 2024-12-05 23:54:53,165 signals Schedule created: 14 - Section: Chess section, Start: 2024-11-08 19:16:08+00:00
+INFO 2024-12-05 23:54:54,261 signals Schedule created: 15 - Section: Dombyra in 30 days, Start: 2024-11-09 19:16:33+00:00
+INFO 2024-12-05 23:54:55,253 signals Schedule created: 16 - Section: Gym, Start: 2024-12-03 19:16:56+00:00
+INFO 2024-12-05 23:54:56,464 signals Schedule created: 17 - Section: Math for kids, Start: 2024-11-06 19:48:56+00:00
+INFO 2024-12-05 23:54:57,693 signals Schedule created: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-05 23:54:58,746 signals Schedule created: 20 - Section: Chess section, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-05 23:54:59,741 signals Schedule created: 21 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-05 23:55:00,780 signals Schedule created: 22 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-05 23:55:03,632 signals Schedule created: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-05 23:55:05,902 signals Booking created: 69 - User: test user, Section: Gym
+INFO 2024-12-05 23:55:08,344 signals Booking created: 70 - User: test user, Section: Gym
+INFO 2024-12-05 23:55:10,800 signals Booking created: 71 - User: test user, Section: Chess section
+INFO 2024-12-05 23:55:13,008 signals Booking created: 72 - User: test user, Section: Dombyra in 30 days
+INFO 2024-12-05 23:55:16,023 signals Booking created: 73 - User: test user, Section: Math for kids
+INFO 2024-12-05 23:55:18,481 signals Booking created: 75 - User: test user, Section: Gym
+INFO 2024-12-05 23:55:20,939 signals Booking created: 76 - User: test user, Section: Gym
+INFO 2024-12-06 00:37:08,446 signals Category created: 2 - Music
+INFO 2024-12-06 00:37:09,181 signals Category created: 3 - Science
+INFO 2024-12-06 00:37:09,879 signals Category created: 4 - Sport
+INFO 2024-12-06 00:37:10,597 signals Center created: 1 - Sun center
+INFO 2024-12-06 00:37:11,416 signals Center created: 2 - MusiKIDS
+INFO 2024-12-06 00:37:12,152 signals Center created: 3 - Dojo
+INFO 2024-12-06 00:37:12,952 signals Center created: 4 - Danabala
+INFO 2024-12-06 00:37:13,692 signals Section created: 1 - Chess section
+INFO 2024-12-06 00:37:14,386 signals Section created: 2 - Chess for very littles
+INFO 2024-12-06 00:37:15,205 signals Section created: 3 - Dombyra in 30 days
+INFO 2024-12-06 00:37:16,024 signals Section created: 4 - Dombyra section
+INFO 2024-12-06 00:37:16,843 signals Section created: 5 - Math for kids
+INFO 2024-12-06 00:37:17,660 signals Section created: 6 - Gym
+INFO 2024-12-06 00:37:18,380 signals Section created: 7 - Dombyra
+INFO 2024-12-06 00:37:19,711 signals Schedule created: 14 - Section: Chess section, Start: 2024-11-08 19:16:08+00:00
+INFO 2024-12-06 00:37:20,939 signals Schedule created: 15 - Section: Dombyra in 30 days, Start: 2024-11-09 19:16:33+00:00
+INFO 2024-12-06 00:37:22,168 signals Schedule created: 16 - Section: Gym, Start: 2024-12-03 19:16:56+00:00
+INFO 2024-12-06 00:37:23,314 signals Schedule created: 17 - Section: Math for kids, Start: 2024-11-06 19:48:56+00:00
+INFO 2024-12-06 00:37:24,523 signals Schedule created: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-06 00:37:25,753 signals Schedule created: 20 - Section: Chess section, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:37:26,981 signals Schedule created: 21 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:37:28,127 signals Schedule created: 22 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:37:29,337 signals Schedule created: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-06 00:37:31,590 signals Booking created: 69 - User: test user, Section: Gym
+INFO 2024-12-06 00:37:33,836 signals Booking created: 70 - User: test user, Section: Gym
+INFO 2024-12-06 00:37:36,011 signals Booking created: 71 - User: test user, Section: Chess section
+INFO 2024-12-06 00:37:38,245 signals Booking created: 72 - User: test user, Section: Dombyra in 30 days
+INFO 2024-12-06 00:37:40,601 signals Booking created: 73 - User: test user, Section: Math for kids
+INFO 2024-12-06 00:37:43,041 signals Booking created: 75 - User: test user, Section: Gym
+INFO 2024-12-06 00:37:45,413 signals Booking created: 76 - User: test user, Section: Gym
+INFO 2024-12-06 00:41:42,371 signals Category created: 2 - Music
+INFO 2024-12-06 00:41:43,041 signals Category created: 3 - Science
+INFO 2024-12-06 00:41:43,804 signals Category created: 4 - Sport
+INFO 2024-12-06 00:41:44,623 signals Center created: 1 - Sun center
+INFO 2024-12-06 00:41:45,442 signals Center created: 2 - MusiKIDS
+INFO 2024-12-06 00:41:46,262 signals Center created: 3 - Dojo
+INFO 2024-12-06 00:41:47,082 signals Center created: 4 - Danabala
+INFO 2024-12-06 00:41:47,816 signals Section created: 1 - Chess section
+INFO 2024-12-06 00:41:48,619 signals Section created: 2 - Chess for very littles
+INFO 2024-12-06 00:41:49,436 signals Section created: 3 - Dombyra in 30 days
+INFO 2024-12-06 00:41:50,255 signals Section created: 4 - Dombyra section
+INFO 2024-12-06 00:41:50,970 signals Section created: 5 - Math for kids
+INFO 2024-12-06 00:41:51,792 signals Section created: 6 - Gym
+INFO 2024-12-06 00:41:52,611 signals Section created: 7 - Dombyra
+INFO 2024-12-06 00:41:53,737 signals Schedule created: 14 - Section: Chess section, Start: 2024-11-08 19:16:08+00:00
+INFO 2024-12-06 00:41:54,885 signals Schedule created: 15 - Section: Dombyra in 30 days, Start: 2024-11-09 19:16:33+00:00
+INFO 2024-12-06 00:41:56,093 signals Schedule created: 16 - Section: Gym, Start: 2024-12-03 19:16:56+00:00
+INFO 2024-12-06 00:41:57,219 signals Schedule created: 17 - Section: Math for kids, Start: 2024-11-06 19:48:56+00:00
+INFO 2024-12-06 00:41:58,981 signals Schedule created: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-06 00:42:00,122 signals Schedule created: 20 - Section: Chess section, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:42:01,213 signals Schedule created: 21 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:42:02,442 signals Schedule created: 22 - Section: Math for kids, Start: 2024-12-10 19:00:00+00:00
+INFO 2024-12-06 00:42:03,670 signals Schedule created: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-06 00:42:06,128 signals Booking created: 69 - User: test user, Section: Gym
+INFO 2024-12-06 00:42:09,118 signals Booking created: 70 - User: test user, Section: Gym
+INFO 2024-12-06 00:42:11,351 signals Booking created: 71 - User: test user, Section: Chess section
+INFO 2024-12-06 00:42:13,706 signals Booking created: 72 - User: test user, Section: Dombyra in 30 days
+INFO 2024-12-06 00:42:15,959 signals Booking created: 73 - User: test user, Section: Math for kids
+INFO 2024-12-06 00:42:18,314 signals Booking created: 75 - User: test user, Section: Gym
+INFO 2024-12-06 00:42:20,669 signals Booking created: 76 - User: test user, Section: Gym

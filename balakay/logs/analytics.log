@@ -259,3 +259,179 @@ INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - Status: expired, User
 INFO 2024-12-04 09:30:11,634 signals Booking created: 76 - Status: pending, User: test user
 INFO 2024-12-04 09:30:20,560 signals Booking updated: 76 - Status: cancelled, User: test user
 INFO 2024-12-05 12:01:20,996 signals Booking updated: 75 - Status: expired, User: test user
+INFO 2024-12-05 23:54:06,083 signals User registered: 1 - admin
+INFO 2024-12-05 23:54:07,619 signals User registered: 2 - zhanibek
+INFO 2024-12-05 23:54:09,083 signals User registered: 3 - Iliyas
+INFO 2024-12-05 23:54:10,695 signals User registered: 4 - qkadmin
+INFO 2024-12-05 23:54:12,227 signals User registered: 5 - Zhan
+INFO 2024-12-05 23:54:13,868 signals User registered: 6 - ttadmin
+INFO 2024-12-05 23:54:15,504 signals User registered: 7 - dos
+INFO 2024-12-05 23:54:17,672 signals User registered: 8 - test user
+INFO 2024-12-05 23:54:19,292 signals User registered: 9 - adm
+INFO 2024-12-05 23:54:21,238 signals User registered: 10 - lal
+INFO 2024-12-05 23:54:23,593 signals User registered: 11 - q
+INFO 2024-12-05 23:54:25,846 signals User registered: 12 - g
+INFO 2024-12-05 23:54:28,573 signals User registered: 13 - Gena
+INFO 2024-12-05 23:54:30,578 signals User registered: 14 - lena
+INFO 2024-12-05 23:54:32,651 signals User registered: 15 - jena
+INFO 2024-12-05 23:54:34,569 signals User registered: 16 - zhake
+INFO 2024-12-05 23:54:43,767 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-05 23:54:44,585 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-05 23:54:45,405 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-05 23:54:46,225 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-05 23:55:05,902 signals Booking created: 69 - Status: cancelled, User: test user
+INFO 2024-12-05 23:55:08,344 signals Booking created: 70 - Status: cancelled, User: test user
+INFO 2024-12-05 23:55:10,800 signals Booking created: 71 - Status: cancelled, User: test user
+INFO 2024-12-05 23:55:13,008 signals Booking created: 72 - Status: cancelled, User: test user
+INFO 2024-12-05 23:55:16,023 signals Booking created: 73 - Status: confirmed, User: test user
+INFO 2024-12-05 23:55:18,482 signals Booking created: 75 - Status: expired, User: test user
+INFO 2024-12-05 23:55:20,939 signals Booking created: 76 - Status: cancelled, User: test user
+INFO 2024-12-06 00:06:13,235 signals User registered: 17 - admin
+INFO 2024-12-06 00:06:14,588 signals User registered: 18 - zhanibek
+INFO 2024-12-06 00:06:16,017 signals User registered: 19 - Iliyas
+INFO 2024-12-06 00:06:17,382 signals User registered: 20 - qkadmin
+INFO 2024-12-06 00:06:18,682 signals User registered: 21 - Zhan
+INFO 2024-12-06 00:06:20,119 signals User registered: 22 - ttadmin
+INFO 2024-12-06 00:32:46,096 signals User registered: 1 - admin1
+INFO 2024-12-06 00:36:34,449 signals User registered: 2 - admin
+INFO 2024-12-06 00:36:35,882 signals User registered: 3 - zhanibek
+INFO 2024-12-06 00:36:37,521 signals User registered: 4 - Iliyas
+INFO 2024-12-06 00:36:39,097 signals User registered: 5 - qkadmin
+INFO 2024-12-06 00:36:40,695 signals User registered: 6 - Zhan
+INFO 2024-12-06 00:36:42,132 signals User registered: 7 - ttadmin
+INFO 2024-12-06 00:36:43,666 signals User registered: 8 - dos
+INFO 2024-12-06 00:36:45,278 signals User registered: 9 - test user
+INFO 2024-12-06 00:36:46,942 signals User registered: 10 - adm
+INFO 2024-12-06 00:36:48,991 signals User registered: 11 - lal
+INFO 2024-12-06 00:36:51,345 signals User registered: 12 - q
+INFO 2024-12-06 00:36:53,621 signals User registered: 13 - g
+INFO 2024-12-06 00:36:55,953 signals User registered: 14 - Gena
+INFO 2024-12-06 00:36:58,309 signals User registered: 15 - lena
+INFO 2024-12-06 00:37:00,459 signals User registered: 16 - jena
+INFO 2024-12-06 00:37:02,303 signals User registered: 17 - zhake
+INFO 2024-12-06 00:37:10,598 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 00:37:11,416 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 00:37:12,153 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 00:37:12,953 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-06 00:37:31,590 signals Booking created: 69 - Status: cancelled, User: test user
+INFO 2024-12-06 00:37:33,837 signals Booking created: 70 - Status: cancelled, User: test user
+INFO 2024-12-06 00:37:36,012 signals Booking created: 71 - Status: cancelled, User: test user
+INFO 2024-12-06 00:37:38,246 signals Booking created: 72 - Status: cancelled, User: test user
+INFO 2024-12-06 00:37:40,601 signals Booking created: 73 - Status: confirmed, User: test user
+INFO 2024-12-06 00:37:43,041 signals Booking created: 75 - Status: expired, User: test user
+INFO 2024-12-06 00:37:45,414 signals Booking created: 76 - Status: cancelled, User: test user
+INFO 2024-12-06 00:41:07,862 signals User registered: 18 - admin
+INFO 2024-12-06 00:41:09,398 signals User registered: 19 - zhanibek
+INFO 2024-12-06 00:41:10,831 signals User registered: 20 - Iliyas
+INFO 2024-12-06 00:41:12,387 signals User registered: 21 - qkadmin
+INFO 2024-12-06 00:41:13,903 signals User registered: 22 - Zhan
+INFO 2024-12-06 00:41:15,439 signals User registered: 23 - ttadmin
+INFO 2024-12-06 00:41:16,976 signals User registered: 24 - dos
+INFO 2024-12-06 00:41:18,452 signals User registered: 25 - test user
+INFO 2024-12-06 00:41:19,945 signals User registered: 26 - adm
+INFO 2024-12-06 00:41:21,993 signals User registered: 27 - lal
+INFO 2024-12-06 00:41:24,450 signals User registered: 28 - q
+INFO 2024-12-06 00:41:26,908 signals User registered: 29 - g
+INFO 2024-12-06 00:41:29,263 signals User registered: 30 - Gena
+INFO 2024-12-06 00:41:31,721 signals User registered: 31 - lena
+INFO 2024-12-06 00:41:34,180 signals User registered: 32 - jena
+INFO 2024-12-06 00:41:36,124 signals User registered: 33 - zhake
+INFO 2024-12-06 00:41:44,623 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 00:41:45,443 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 00:41:46,263 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 00:41:47,082 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-06 00:42:06,129 signals Booking created: 69 - Status: cancelled, User: test user
+INFO 2024-12-06 00:42:09,119 signals Booking created: 70 - Status: cancelled, User: test user
+INFO 2024-12-06 00:42:11,351 signals Booking created: 71 - Status: cancelled, User: test user
+INFO 2024-12-06 00:42:13,707 signals Booking created: 72 - Status: cancelled, User: test user
+INFO 2024-12-06 00:42:15,960 signals Booking created: 73 - Status: confirmed, User: test user
+INFO 2024-12-06 00:42:18,315 signals Booking created: 75 - Status: expired, User: test user
+INFO 2024-12-06 00:42:20,670 signals Booking created: 76 - Status: cancelled, User: test user
+INFO 2024-12-06 00:49:33,316 signals User registered: 34 - admin
+INFO 2024-12-06 00:49:34,851 signals User registered: 35 - zhanibek
+INFO 2024-12-06 00:49:36,422 signals User registered: 36 - Iliyas
+INFO 2024-12-06 00:49:37,846 signals User registered: 37 - qkadmin
+INFO 2024-12-06 00:49:39,460 signals User registered: 38 - Zhan
+INFO 2024-12-06 00:49:40,893 signals User registered: 39 - ttadmin
+INFO 2024-12-06 00:49:42,532 signals User registered: 40 - dos
+INFO 2024-12-06 00:49:44,176 signals User registered: 41 - test user
+INFO 2024-12-06 00:49:45,738 signals User registered: 42 - adm
+INFO 2024-12-06 00:49:47,754 signals User registered: 43 - lal
+INFO 2024-12-06 00:49:50,110 signals User registered: 44 - q
+INFO 2024-12-06 00:49:52,484 signals User registered: 45 - g
+INFO 2024-12-06 00:49:54,615 signals User registered: 46 - Gena
+INFO 2024-12-06 00:49:56,970 signals User registered: 47 - lena
+INFO 2024-12-06 00:49:59,223 signals User registered: 48 - jena
+INFO 2024-12-06 00:50:01,169 signals User registered: 49 - zhake
+INFO 2024-12-06 00:50:09,770 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 00:50:10,487 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 00:50:11,310 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 00:50:12,092 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-06 00:50:26,258 signals Booking created: 69 - Status: cancelled, User: test user
+INFO 2024-12-06 00:50:27,895 signals Booking created: 70 - Status: cancelled, User: test user
+INFO 2024-12-06 00:50:29,329 signals Booking created: 71 - Status: cancelled, User: test user
+INFO 2024-12-06 00:50:30,710 signals Booking created: 72 - Status: cancelled, User: test user
+INFO 2024-12-06 00:50:32,298 signals Booking created: 73 - Status: confirmed, User: test user
+INFO 2024-12-06 00:50:33,835 signals Booking created: 75 - Status: expired, User: test user
+INFO 2024-12-06 00:50:35,371 signals Booking created: 76 - Status: cancelled, User: test user
+INFO 2024-12-06 00:55:14,073 signals Booking deleted: 73 - Status: confirmed, User: test user
+INFO 2024-12-06 00:55:14,074 signals Booking deleted: 72 - Status: cancelled, User: test user
+INFO 2024-12-06 00:55:14,075 signals Booking deleted: 71 - Status: cancelled, User: test user
+INFO 2024-12-06 00:55:40,392 signals Booking deleted: 76 - Status: pending, User: test user
+INFO 2024-12-06 00:55:40,393 signals Booking deleted: 75 - Status: pending, User: test user
+INFO 2024-12-06 00:55:40,394 signals Booking deleted: 70 - Status: cancelled, User: test user
+INFO 2024-12-06 00:55:40,395 signals Booking deleted: 69 - Status: cancelled, User: test user
+INFO 2024-12-06 00:56:08,893 signals User deleted: 15 - jena
+INFO 2024-12-06 00:56:08,893 signals User deleted: 12 - g
+INFO 2024-12-06 00:56:08,894 signals User deleted: 11 - q
+INFO 2024-12-06 00:56:08,894 signals User deleted: 10 - lal
+INFO 2024-12-06 00:56:08,894 signals User deleted: 4 - qkadmin
+INFO 2024-12-06 00:56:40,935 signals Center updated: 1 - Sun center, City: Almay
+INFO 2024-12-06 00:56:40,935 signals Center updated: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 00:56:40,936 signals Center updated: 3 - Dojo, City: Almaty
+INFO 2024-12-06 00:56:40,936 signals Center updated: 4 - Danabala, City: Astana
+INFO 2024-12-06 00:57:08,799 signals User registered: 2 - admin
+INFO 2024-12-06 00:57:10,334 signals User registered: 3 - zhanibek
+INFO 2024-12-06 00:57:11,780 signals User registered: 4 - Iliyas
+INFO 2024-12-06 00:57:13,406 signals User registered: 5 - Zhan
+INFO 2024-12-06 00:57:14,942 signals User registered: 6 - ttadmin
+INFO 2024-12-06 00:57:16,478 signals User registered: 7 - dos
+INFO 2024-12-06 00:57:18,014 signals User registered: 8 - test user
+INFO 2024-12-06 00:57:19,495 signals User registered: 9 - adm
+INFO 2024-12-06 00:57:21,309 signals User registered: 10 - Gena
+INFO 2024-12-06 00:57:23,618 signals User registered: 11 - lena
+INFO 2024-12-06 00:57:25,438 signals User registered: 12 - zhake
+INFO 2024-12-06 00:57:33,096 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 00:57:33,783 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 00:57:34,603 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 00:57:35,335 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-06 01:05:13,826 signals User registered: 13 - admin
+INFO 2024-12-06 01:05:15,458 signals User registered: 14 - zhanibek
+INFO 2024-12-06 01:05:17,049 signals User registered: 15 - Iliyas
+INFO 2024-12-06 01:05:18,687 signals User registered: 16 - Zhan
+INFO 2024-12-06 01:05:20,211 signals User registered: 17 - ttadmin
+INFO 2024-12-06 01:05:21,861 signals User registered: 18 - dos
+INFO 2024-12-06 01:05:23,419 signals User registered: 19 - test user
+INFO 2024-12-06 01:05:25,036 signals User registered: 20 - adm
+INFO 2024-12-06 01:05:27,085 signals User registered: 21 - Gena
+INFO 2024-12-06 01:05:29,543 signals User registered: 22 - lena
+INFO 2024-12-06 01:05:31,385 signals User registered: 23 - zhake
+INFO 2024-12-06 01:05:39,987 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 01:05:40,808 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 01:05:41,626 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 01:05:42,445 signals Center created: 4 - Danabala, City: Astana
+INFO 2024-12-06 01:14:19,164 signals User registered: 24 - admin
+INFO 2024-12-06 01:14:20,700 signals User registered: 25 - zhanibek
+INFO 2024-12-06 01:14:22,235 signals User registered: 26 - Iliyas
+INFO 2024-12-06 01:14:23,829 signals User registered: 27 - Zhan
+INFO 2024-12-06 01:14:25,512 signals User registered: 28 - ttadmin
+INFO 2024-12-06 01:14:27,048 signals User registered: 29 - dos
+INFO 2024-12-06 01:14:28,686 signals User registered: 30 - test user
+INFO 2024-12-06 01:14:30,221 signals User registered: 31 - adm
+INFO 2024-12-06 01:14:32,065 signals User registered: 32 - Gena
+INFO 2024-12-06 01:14:34,240 signals User registered: 33 - lena
+INFO 2024-12-06 01:14:36,204 signals User registered: 34 - zhake
+INFO 2024-12-06 01:14:44,763 signals Center created: 1 - Sun center, City: Almay
+INFO 2024-12-06 01:14:45,480 signals Center created: 2 - MusiKIDS, City: Almaty
+INFO 2024-12-06 01:14:46,249 signals Center created: 3 - Dojo, City: Almaty
+INFO 2024-12-06 01:14:47,118 signals Center created: 4 - Danabala, City: Astana

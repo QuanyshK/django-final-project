@@ -6,9 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure--4q=&riqhl4a!*&g@g^$ifpwk+0c)&emd^%j!ney2^s@f)z*)0')
 
-DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost,0.0.0.0,balakay-web-1021550053826.asia-south1.run.app").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost,0.0.0.0,balakay-web-1021550053826.asia-south1.run.app,").split(",")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'balakay.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME', 'balakay_pmuq'),
+        'USER': os.getenv('DATABASE_USER', 'admin'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Ajxf8Ybjm4zzfPvK9NfyxduvBM4R6dzX'),
+        'HOST': os.getenv('DATABASE_HOST', 'dpg-ct8vor23esus73d85j9g-a.singapore-postgres.render.com'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
 

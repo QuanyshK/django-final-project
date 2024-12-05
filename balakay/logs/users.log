@@ -329,3 +329,75 @@ INFO 2024-12-02 00:35:52,237 signals Client created: 8 - zhake m
 INFO 2024-12-04 06:06:38,144 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
 INFO 2024-12-04 09:30:11,632 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
 INFO 2024-12-04 09:30:20,548 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 00:42:30,704 signals Client created: 1 - Zhanibek Beisenov
+INFO 2024-12-06 00:42:31,933 signals Client created: 2 - Iliyas Otegen
+INFO 2024-12-06 00:42:33,162 signals Client created: 4 - z m
+INFO 2024-12-06 00:42:34,289 signals Client created: 5 - testuanysh testouv
+INFO 2024-12-06 00:42:35,351 signals Client created: 6 - Dosbol Bolatuly
+INFO 2024-12-06 00:42:36,439 signals Client created: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 00:42:37,704 signals Client created: 8 - zhake m
+INFO 2024-12-06 00:42:38,384 signals Child created: 8 - Test Child
+INFO 2024-12-06 00:42:39,204 signals Child created: 9 - Test 2 Child
+INFO 2024-12-06 00:42:40,022 signals Child created: 10 - Test 3 Testuly
+INFO 2024-12-06 00:42:41,576 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 00:42:43,197 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 00:50:45,918 signals Client created: 1 - Zhanibek Beisenov
+INFO 2024-12-06 00:50:47,044 signals Client created: 2 - Iliyas Otegen
+INFO 2024-12-06 00:50:48,274 signals Client created: 4 - z m
+INFO 2024-12-06 00:50:49,503 signals Client created: 5 - testuanysh testouv
+INFO 2024-12-06 00:50:50,688 signals Client created: 6 - Dosbol Bolatuly
+INFO 2024-12-06 00:50:51,857 signals Client created: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 00:50:53,040 signals Client created: 8 - zhake m
+INFO 2024-12-06 00:50:53,730 signals Child created: 8 - Test Child
+INFO 2024-12-06 00:50:54,418 signals Child created: 9 - Test 2 Child
+INFO 2024-12-06 00:50:55,097 signals Child created: 10 - Test 3 Testuly
+INFO 2024-12-06 00:50:56,593 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 00:50:58,042 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 00:56:40,941 signals Client updated: 1 - Zhanibek Beisenov
+INFO 2024-12-06 00:56:40,942 signals Client updated: 2 - Iliyas Otegen
+INFO 2024-12-06 00:56:40,942 signals Client updated: 4 - z m
+INFO 2024-12-06 00:56:40,943 signals Client updated: 5 - testuanysh testouv
+INFO 2024-12-06 00:56:40,943 signals Client updated: 6 - Dosbol Bolatuly
+INFO 2024-12-06 00:56:40,944 signals Client updated: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 00:56:40,944 signals Client updated: 8 - zhake m
+INFO 2024-12-06 00:56:40,944 signals Child updated: 8 - Test Child
+INFO 2024-12-06 00:56:40,945 signals Child updated: 9 - Test 2 Child
+INFO 2024-12-06 00:56:40,945 signals Child updated: 10 - Test 3 Testuly
+INFO 2024-12-06 00:56:40,946 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 00:56:40,947 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 00:57:51,778 signals Client created: 1 - Zhanibek Beisenov
+INFO 2024-12-06 00:57:52,846 signals Client created: 2 - Iliyas Otegen
+INFO 2024-12-06 00:57:53,818 signals Client created: 4 - z m
+INFO 2024-12-06 00:57:54,879 signals Client created: 5 - testuanysh testouv
+INFO 2024-12-06 00:57:55,942 signals Client created: 6 - Dosbol Bolatuly
+INFO 2024-12-06 00:57:56,944 signals Client created: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 00:57:58,075 signals Client created: 8 - zhake m
+INFO 2024-12-06 00:57:58,874 signals Child created: 8 - Test Child
+INFO 2024-12-06 00:57:59,636 signals Child created: 9 - Test 2 Child
+INFO 2024-12-06 00:58:00,305 signals Child created: 10 - Test 3 Testuly
+INFO 2024-12-06 00:58:01,673 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 00:58:03,040 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 01:06:00,569 signals Client created: 1 - Zhanibek Beisenov
+INFO 2024-12-06 01:06:01,799 signals Client created: 2 - Iliyas Otegen
+INFO 2024-12-06 01:06:02,925 signals Client created: 4 - z m
+INFO 2024-12-06 01:06:04,094 signals Client created: 5 - testuanysh testouv
+INFO 2024-12-06 01:06:05,159 signals Client created: 6 - Dosbol Bolatuly
+INFO 2024-12-06 01:06:06,342 signals Client created: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 01:06:07,534 signals Client created: 8 - zhake m
+INFO 2024-12-06 01:06:08,290 signals Child created: 8 - Test Child
+INFO 2024-12-06 01:06:09,069 signals Child created: 9 - Test 2 Child
+INFO 2024-12-06 01:06:09,889 signals Child created: 10 - Test 3 Testuly
+INFO 2024-12-06 01:06:11,363 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 01:06:12,961 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-06 01:15:04,635 signals Client created: 1 - Zhanibek Beisenov
+INFO 2024-12-06 01:15:05,756 signals Client created: 2 - Iliyas Otegen
+INFO 2024-12-06 01:15:06,892 signals Client created: 4 - z m
+INFO 2024-12-06 01:15:08,072 signals Client created: 5 - testuanysh testouv
+INFO 2024-12-06 01:15:09,237 signals Client created: 6 - Dosbol Bolatuly
+INFO 2024-12-06 01:15:10,305 signals Client created: 7 - kuanysh kobeisinuly
+INFO 2024-12-06 01:15:11,490 signals Client created: 8 - zhake m
+INFO 2024-12-06 01:15:12,230 signals Child created: 8 - Test Child
+INFO 2024-12-06 01:15:13,026 signals Child created: 9 - Test 2 Child
+INFO 2024-12-06 01:15:13,845 signals Child created: 10 - Test 3 Testuly
+INFO 2024-12-06 01:15:15,485 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-06 01:15:17,123 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16

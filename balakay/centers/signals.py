@@ -59,14 +59,3 @@ def log_booking_save(sender, instance, created, **kwargs):
 @receiver(post_delete, sender=Booking)
 def log_booking_delete(sender, instance, **kwargs):
     logger.info(f"Booking deleted: {instance.id} - User: {instance.user}, Section: {instance.schedule.section.name}")
-
-@receiver(post_save, sender=FavoriteSection)
-def log_favorite_section_save(sender, instance, created, **kwargs):
-    if created:
-        logger.info(f"FavoriteSection created: {instance.id} - Client: {instance.client.user.username}, Section: {instance.section.name}")
-    else:
-        logger.info(f"FavoriteSection updated: {instance.id} - Client: {instance.client.user.username}, Section: {instance.section.name}")
-
-@receiver(post_delete, sender=FavoriteSection)
-def log_favorite_section_delete(sender, instance, **kwargs):
-    logger.info(f"FavoriteSection deleted: {instance.id} - Client: {instance.client.user.username}, Section: {instance.section.name}")

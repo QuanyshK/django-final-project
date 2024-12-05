@@ -147,3 +147,57 @@ INFO 2024-11-21 13:46:58,335 signals Subscription created: 1 - Basic Plan, Activ
 INFO 2024-11-21 13:46:59,196 signals Subscription created: 1 - Basic Plan, Active: True
 INFO 2024-11-21 13:46:59,769 signals Subscription created: 1 - Basic Plan, Active: True
 INFO 2024-11-21 13:47:00,632 signals Subscription created: 1 - Basic Plan, Active: True
+INFO 2024-12-06 00:42:23,639 signals AgeGroup created: 1 - 4 - 7
+INFO 2024-12-06 00:42:24,457 signals AgeGroup created: 2 - 0 - 4
+INFO 2024-12-06 00:42:25,192 signals AgeGroup created: 3 - 7 - 16
+INFO 2024-12-06 00:42:25,994 signals Subscription created: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 00:42:26,813 signals Subscription created: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 00:42:27,517 signals Subscription created: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 00:42:28,169 signals Subscription created: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 00:42:28,818 signals Subscription created: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 00:42:29,491 signals Subscription created: 6 - 6 months / 7-16, Active: True
+INFO 2024-12-06 00:50:38,537 signals AgeGroup created: 1 - 4 - 7
+INFO 2024-12-06 00:50:39,364 signals AgeGroup created: 2 - 0 - 4
+INFO 2024-12-06 00:50:40,123 signals AgeGroup created: 3 - 7 - 16
+INFO 2024-12-06 00:50:40,817 signals Subscription created: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 00:50:41,617 signals Subscription created: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 00:50:42,437 signals Subscription created: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 00:50:43,155 signals Subscription created: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 00:50:43,973 signals Subscription created: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 00:50:44,709 signals Subscription created: 6 - 6 months / 7-16, Active: True
+INFO 2024-12-06 00:56:40,938 signals AgeGroup updated: 1 - 4 - 7
+INFO 2024-12-06 00:56:40,939 signals AgeGroup updated: 2 - 0 - 4
+INFO 2024-12-06 00:56:40,939 signals AgeGroup updated: 3 - 7 - 16
+INFO 2024-12-06 00:56:40,939 signals Subscription updated: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 00:56:40,939 signals Subscription updated: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 00:56:40,940 signals Subscription updated: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 00:56:40,940 signals Subscription updated: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 00:56:40,940 signals Subscription updated: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 00:56:40,940 signals Subscription updated: 6 - 6 months / 7-16, Active: True
+INFO 2024-12-06 00:57:45,351 signals AgeGroup created: 1 - 4 - 7
+INFO 2024-12-06 00:57:46,006 signals AgeGroup created: 2 - 0 - 4
+INFO 2024-12-06 00:57:46,658 signals AgeGroup created: 3 - 7 - 16
+INFO 2024-12-06 00:57:47,317 signals Subscription created: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 00:57:47,984 signals Subscription created: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 00:57:48,638 signals Subscription created: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 00:57:49,297 signals Subscription created: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 00:57:49,958 signals Subscription created: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 00:57:50,793 signals Subscription created: 6 - 6 months / 7-16, Active: True
+INFO 2024-12-06 01:05:53,300 signals AgeGroup created: 1 - 4 - 7
+INFO 2024-12-06 01:05:54,056 signals AgeGroup created: 2 - 0 - 4
+INFO 2024-12-06 01:05:54,836 signals AgeGroup created: 3 - 7 - 16
+INFO 2024-12-06 01:05:55,593 signals Subscription created: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 01:05:56,311 signals Subscription created: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 01:05:57,088 signals Subscription created: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 01:05:57,907 signals Subscription created: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 01:05:58,625 signals Subscription created: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 01:05:59,444 signals Subscription created: 6 - 6 months / 7-16, Active: True
+INFO 2024-12-06 01:14:57,871 signals AgeGroup created: 1 - 4 - 7
+INFO 2024-12-06 01:14:58,569 signals AgeGroup created: 2 - 0 - 4
+INFO 2024-12-06 01:14:59,267 signals AgeGroup created: 3 - 7 - 16
+INFO 2024-12-06 01:15:00,021 signals Subscription created: 1 - 12 months / 0-4, Active: True
+INFO 2024-12-06 01:15:00,739 signals Subscription created: 2 - 12 months / 4-7, Active: True
+INFO 2024-12-06 01:15:01,441 signals Subscription created: 3 - 12 months / 7-16, Active: True
+INFO 2024-12-06 01:15:02,139 signals Subscription created: 4 - 6 months / 0-4, Active: True
+INFO 2024-12-06 01:15:02,838 signals Subscription created: 5 - 6 months / 4-7, Active: True
+INFO 2024-12-06 01:15:03,561 signals Subscription created: 6 - 6 months / 7-16, Active: True
