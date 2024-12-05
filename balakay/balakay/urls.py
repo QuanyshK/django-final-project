@@ -3,7 +3,8 @@ from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
-
+from . import settings
+from django.conf.urls.static import static
 schema_view = get_schema_view(
     openapi.Info(
         title="Balakay API",
@@ -20,11 +21,11 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('centers/', include('centers.urls')),
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
+    path('', include('users.urls')),
     path('subscriptions/', include('subscriptions.urls')),
     path("merchant/", include("merchant.urls")),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('analytics/', include('analytics.urls')),
 
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

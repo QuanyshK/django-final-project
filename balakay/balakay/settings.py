@@ -1,13 +1,14 @@
 from pathlib import Path
 from datetime import timedelta
 import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure--4q=&riqhl4a!*&g@g^$ifpwk+0c)&emd^%j!ney2^s@f)z*)0'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure--4q=&riqhl4a!*&g@g^$ifpwk+0c)&emd^%j!ney2^s@f)z*)0')
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost,0.0.0.0,balakay-web-1021550053826.asia-south1.run.app").split(",")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -96,25 +97,22 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
 
-
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
-
-
 
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 
@@ -196,3 +194,6 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/merchant/schedule/'
 LOGIN_URL = '/merchant/login/'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://balakay-web-1021550053826.asia-south1.run.app',
+]

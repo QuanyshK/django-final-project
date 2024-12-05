@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: balakay_web
+    command: gunicorn --bind 0.0.0.0:8080 balakay.wsgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    environment:
+      DJANGO_SETTINGS_MODULE: balakay.settings

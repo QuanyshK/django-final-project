@@ -86,3 +86,12 @@ INFO 2024-12-04 06:06:08,477 signals Schedule created: 26 - Section: Gym, Start:
 INFO 2024-12-04 06:06:38,148 signals Booking created: 75 - User: test user, Section: Gym
 INFO 2024-12-04 06:06:38,150 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
 INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - User: test user, Section: Dombyra section
+INFO 2024-12-04 09:30:11,634 signals Booking created: 76 - User: test user, Section: Gym
+INFO 2024-12-04 09:30:11,635 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-04 09:30:20,536 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+INFO 2024-12-04 09:30:20,559 signals Booking updated: 76 - User: test user, Section: Gym
+INFO 2024-12-04 09:30:28,528 signals FavoriteSection deleted: 17 - Client: test user, Section: Chess for very littles
+INFO 2024-12-04 09:30:29,016 signals FavoriteSection created: 18 - Client: test user, Section: Chess for very littles
+INFO 2024-12-04 09:31:02,409 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-04 09:31:03,275 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-05 12:01:20,996 signals Booking updated: 75 - User: test user, Section: Gym

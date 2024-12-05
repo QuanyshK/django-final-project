@@ -256,3 +256,6 @@ INFO 2024-11-23 21:28:51,264 signals User registered: 15 - jena
 INFO 2024-12-02 00:35:52,231 signals User registered: 16 - zhake
 INFO 2024-12-04 06:06:38,148 signals Booking created: 75 - Status: pending, User: test user
 INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - Status: expired, User: test user
+INFO 2024-12-04 09:30:11,634 signals Booking created: 76 - Status: pending, User: test user
+INFO 2024-12-04 09:30:20,560 signals Booking updated: 76 - Status: cancelled, User: test user
+INFO 2024-12-05 12:01:20,996 signals Booking updated: 75 - Status: expired, User: test user

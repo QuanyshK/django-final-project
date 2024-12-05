@@ -327,3 +327,5 @@ INFO 2024-11-21 13:47:00,633 signals Child created: 1 - Child One
 INFO 2024-11-21 13:47:00,634 signals Subscription created: 1 - Child: Child, Type: Basic Plan
 INFO 2024-12-02 00:35:52,237 signals Client created: 8 - zhake m
 INFO 2024-12-04 06:06:38,144 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-04 09:30:11,632 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-04 09:30:20,548 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16

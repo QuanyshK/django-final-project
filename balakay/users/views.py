@@ -58,7 +58,11 @@ def update_profile(request):
             user_form.save()
             client_form.save()
             client.refresh_from_db()
-            return JsonResponse({'message': 'Profile updated successfully!'}, status=200)
+            client = get_object_or_404(Client, user=request.user)
+            children = Child.objects.filter(parent=client)
+            active_subscriptions = UserSubscription.objects.filter(parent=client, expiration_date__gte=timezone.now())
+            return render(request, 'users/profile.html', {'client': client, 'children': children, 'active_subscriptions': active_subscriptions})
+
         else:
             return JsonResponse({'error': 'Invalid data submitted'}, status=400)
     else:
@@ -77,7 +81,11 @@ def add_child_view(request):
             child = form.save(commit=False)
             child.parent = get_object_or_404(Client, user=request.user)
             child.save()
-            return JsonResponse({'message': 'Child added successfully!'}, status=201)  
+            client = get_object_or_404(Client, user=request.user)
+            children = Child.objects.filter(parent=client)
+            active_subscriptions = UserSubscription.objects.filter(parent=client, expiration_date__gte=timezone.now())
+            return render(request, 'users/profile.html', {'client': client, 'children': children, 'active_subscriptions': active_subscriptions})
+
     else:
         form = ChildForm()
     return render(request, 'users/add_child.html', {'form': form})
