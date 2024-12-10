@@ -6,7 +6,8 @@ from .views import (
     add_schedule,
     edit_schedule,
     schedule_details,
-    center_profile
+    center_profile,
+    cancel_booking
 )
 from .views import SectionAPIView, ScheduleAPIView
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('center_profile/', center_profile, name='center_profile'),
     path('sections/', SectionAPIView.as_view(), name='sections-api'),
     path('schedules/', ScheduleAPIView.as_view(), name='schedules-api'),
+    path('schedule/<int:booking_id>/cancel/', cancel_booking, name='cancel_booking'),
 ]

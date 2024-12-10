@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
+from notifications.models import Notification
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -166,6 +166,29 @@ def center_profile(request):
     partner = request.user.partner
     center = partner.center  # Предполагается, что партнер привязан к одному центру
     return render(request, 'center_profile.html', {'center': center})
+
+def create_notification(user, booking, message):
+    Notification.objects.create(user=user, booking=booking, message=message)
+
+
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, schedule__section__center=request.user.partner.center)
+
+    if booking.status == Booking.CANCELLED:
+        messages.error(request, "This booking has already been cancelled.")
+        return redirect('schedule_details', schedule_id=booking.schedule.id)
+
+    booking.status = Booking.CANCELLED
+    booking.cancelled_at = timezone.now()
+    booking.save()
+
+    message = f"Your booking for {booking.schedule.section.name} on {booking.schedule.start_time} has been cancelled by the partner."
+    create_notification(user=booking.user, booking=booking, message=message)
+
+    messages.success(request, f"Booking for {booking.child_name} successfully cancelled.")
+    return redirect('schedule_details', schedule_id=booking.schedule.id)
 
 from .serializers import SectionSerializer, ScheduleSerializer
 from rest_framework.views import APIView

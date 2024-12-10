@@ -13,7 +13,7 @@
     <p><strong>Status:</strong> {{ schedule.get_status_display }}</p>
 
     <h2>Bookings</h2>
-    <form method="get">
+    <form method="get" class="mb-3">
         <label for="status">Filter by status:</label>
         <select name="status" id="status" class="form-control">
             <option value="">All</option>
@@ -31,23 +31,33 @@
                 <th>Child Name</th>
                 <th>Parent Phone</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for booking in bookings %}
             <tr>
                 <td>{{ booking.parent_name }}</td>
-                <td>{{ booking.child }}</td>
+                <td>{{ booking.child_name }}</td>
                 <td>{{ booking.parent_phone }}</td>
                 <td>{{ booking.get_status_display }}</td>
+                <td>
+                    {% if booking.status != 'cancelled' %}
+                        <form method="post" action="{% url 'cancel_booking' booking.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                        </form>
+                    {% else %}
+                        Cancelled
+                    {% endif %}
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">No bookings found.</td>
+                <td colspan="5" class="text-center">No bookings found.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 {% endblock %}
-

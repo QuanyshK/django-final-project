@@ -10,6 +10,7 @@ from .models import Client, Child, UserSubscription
 from .serializers import ClientSerializer, ChildSerializer, UserSubscriptionSerializer
 from .forms import ClientRegistrationForm, UserLoginForm, UserUpdateForm, ClientUpdateForm, ChildForm
 from django.http import JsonResponse
+from notifications.models import Notification
 def login_view(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)
@@ -90,7 +91,10 @@ def subscription_detail(request, id):
     if user_subscription.is_active:
         user_subscription.update_remaining_days_and_visits()
     return render(request, 'users/subscription_detail.html', {'user_subscription': user_subscription})
-
+@login_required
+def user_notifications(request):
+    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'users/user_notifications.html', {'notifications': notifications})
 
 
 class ClientViewSet(viewsets.ModelViewSet):
