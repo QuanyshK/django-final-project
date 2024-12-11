@@ -259,3 +259,6 @@ INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - Status: expired, User
 INFO 2024-12-11 04:24:19,174 signals Booking created: 76 - Status: pending, User: test user
 INFO 2024-12-11 04:24:25,111 signals Booking updated: 75 - Status: expired, User: test user
 INFO 2024-12-11 04:28:23,329 signals Booking updated: 76 - Status: cancelled, User: test user
+INFO 2024-12-11 05:02:11,681 signals Booking created: 77 - Status: pending, User: test user
+INFO 2024-12-11 05:15:38,739 signals Booking created: 78 - Status: pending, User: test user
+INFO 2024-12-11 05:16:00,940 signals Booking updated: 78 - Status: cancelled, User: test user

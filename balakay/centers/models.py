@@ -5,6 +5,7 @@ from django.apps import apps
 from django.utils import timezone
 from datetime import timedelta
 from django.core.exceptions import ValidationError
+from notifications.models import Notification
 # Create your models here.
 
 class Category(models.Model):
@@ -59,29 +60,34 @@ class Schedule(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     total_slots = models.PositiveIntegerField()
-    status = models.CharField(
-        max_length=20,
-        choices=STATUS_CHOICES,
-        default=ACTIVE,
-    )
-
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=ACTIVE)
 
     def clean(self):
         super().clean()
-
-        # Проверка, что время начала раньше времени окончания
         if self.start_time >= self.end_time:
             raise ValidationError("Start time must be earlier than end time.")
-
-        # Проверка пересечения с другими расписаниями
         overlapping_schedules = Schedule.objects.filter(
             section=self.section,
             start_time__lt=self.end_time,
             end_time__gt=self.start_time
         ).exclude(id=self.id)
-
         if overlapping_schedules.exists():
             raise ValidationError("This schedule overlaps with an existing schedule.")
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            original = Schedule.objects.get(pk=self.pk)
+            if original.status != self.status and self.status == self.CANCELLED:
+                bookings = Booking.objects.filter(schedule=self, status=Booking.PENDING)
+                for booking in bookings:
+                    booking.status = Booking.CANCELLED
+                    booking.cancelled_at = timezone.now()
+                    booking.save()
+                    Notification.objects.create(
+                        user=booking.user,
+                        message=f"The schedule for {self.section.name} on {self.start_time} has been cancelled."
+                    )
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.section.name} | {self.start_time}"
