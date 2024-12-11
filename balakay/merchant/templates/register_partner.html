@@ -2,12 +2,26 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Register as a Partner</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <h1>Register as a Partner</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-block">Register</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-3">
+                        Already have an account? <a href="{% url 'login_partner' %}">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
-

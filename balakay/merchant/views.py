@@ -227,3 +227,8 @@ class ScheduleAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from django.contrib.auth import logout
+
+def logout_partner(request):
+    logout(request)
+    return redirect('login_partner')

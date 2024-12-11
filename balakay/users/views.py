@@ -11,6 +11,8 @@ from .serializers import ClientSerializer, ChildSerializer, UserSubscriptionSeri
 from .forms import ClientRegistrationForm, UserLoginForm, UserUpdateForm, ClientUpdateForm, ChildForm
 from django.http import JsonResponse
 from notifications.models import Notification
+from django.core.paginator import Paginator
+
 def login_view(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)
@@ -94,7 +96,10 @@ def subscription_detail(request, id):
 @login_required
 def user_notifications(request):
     notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'users/user_notifications.html', {'notifications': notifications})
+    paginator = Paginator(notifications, 10) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'users/user_notifications.html', {'page_obj': page_obj})
 
 
 class ClientViewSet(viewsets.ModelViewSet):

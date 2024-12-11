@@ -4,60 +4,71 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Schedule Details</h1>
-    <p><strong>Section:</strong> {{ schedule.section.name }}</p>
-    <p><strong>Start Time:</strong> {{ schedule.start_time }}</p>
-    <p><strong>End Time:</strong> {{ schedule.end_time }}</p>
-    <p><strong>Total Slots:</strong> {{ schedule.total_slots }}</p>
-    <p><strong>Available Slots:</strong> {{ available_slots }}</p>
-    <p><strong>Status:</strong> {{ schedule.get_status_display }}</p>
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h1>Schedule Details</h1>
+        </div>
+        <div class="card-body">
+            <p><strong>Section:</strong> {{ schedule.section.name }}</p>
+            <p><strong>Start Time:</strong> {{ schedule.start_time }}</p>
+            <p><strong>End Time:</strong> {{ schedule.end_time }}</p>
+            <p><strong>Total Slots:</strong> {{ schedule.total_slots }}</p>
+            <p><strong>Available Slots:</strong> {{ available_slots }}</p>
+            <p><strong>Status:</strong> {{ schedule.get_status_display }}</p>
+        </div>
+    </div>
 
-    <h2>Bookings</h2>
+    <h2 class="mt-4">Bookings</h2>
     <form method="get" class="mb-3">
-        <label for="status">Filter by status:</label>
-        <select name="status" id="status" class="form-control">
-            <option value="">All</option>
-            {% for status, display in statuses %}
-            <option value="{{ status }}" {% if request.GET.status == status %}selected{% endif %}>{{ display }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-primary mt-2">Filter</button>
+        <div class="row">
+            <div class="col-md-8">
+                <select name="status" id="status" class="form-select">
+                    <option value="">All</option>
+                    {% for status, display in statuses %}
+                        <option value="{{ status }}" {% if request.GET.status == status %}selected{% endif %}>{{ display }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+        </div>
     </form>
 
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th>Parent Name</th>
-                <th>Child Name</th>
-                <th>Parent Phone</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.parent_name }}</td>
-                <td>{{ booking.child_name }}</td>
-                <td>{{ booking.parent_phone }}</td>
-                <td>{{ booking.get_status_display }}</td>
-                <td>
-                    {% if booking.status != 'cancelled' %}
-                        <form method="post" action="{% url 'cancel_booking' booking.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
-                        </form>
-                    {% else %}
-                        Cancelled
-                    {% endif %}
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5" class="text-center">No bookings found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% if bookings %}
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Parent Name</th>
+                    <th>Child Name</th>
+                    <th>Parent Phone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.parent_name }}</td>
+                        <td>{{ booking.child_name }}</td>
+                        <td>{{ booking.parent_phone }}</td>
+                        <td>{{ booking.get_status_display }}</td>
+                        <td>
+                            {% if booking.status != 'cancelled' %}
+                                <form method="post" action="{% url 'cancel_booking' booking.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                </form>
+                            {% else %}
+                                <span class="badge bg-secondary">Cancelled</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No bookings found.</div>
+    {% endif %}
 </div>
 {% endblock %}
