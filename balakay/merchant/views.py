@@ -122,33 +122,17 @@ def add_schedule(request):
 
 @login_required
 def edit_schedule(request, schedule_id):
-    """
-    Редактирование расписания, включая переключение статуса.
-    """
-    try:
-        partner = request.user.partner
-        if not partner.is_active:
-            return redirect('login_partner')
-    except Partner.DoesNotExist:
-        return redirect('login_partner')
-
+    partner = request.user.partner
     sections = Section.objects.filter(center=partner.center)
     schedule = get_object_or_404(Schedule, id=schedule_id, section__in=sections)
 
     if request.method == 'POST':
-        if 'toggle_status' in request.POST:  # Обработка нажатия кнопки "Set to Active/Cancelled"
-            if schedule.status == Schedule.CANCELLED:
-                schedule.status = Schedule.ACTIVE
-            else:
-                if schedule.start_time - timezone.now() <= timedelta(hours=1):
-                    messages.error(request, "Cannot cancel schedule less than an hour before start.")
-                else:
-                    schedule.status = Schedule.CANCELLED
+        if 'toggle_status' in request.POST and schedule.status == Schedule.ACTIVE:
+            schedule.status = Schedule.CANCELLED
             schedule.save()
-            messages.success(request, f"Schedule status updated to {schedule.get_status_display()}.")
-            return redirect('edit_schedule', schedule_id=schedule_id)
+            messages.success(request, "Schedule has been cancelled and cannot be reactivated.")
+            return redirect('manage_schedule')
 
-        # Обработка сохранения формы
         form = ScheduleForm(request.POST, instance=schedule, sections_queryset=sections)
         if form.is_valid():
             form.save()
@@ -158,6 +142,7 @@ def edit_schedule(request, schedule_id):
         form = ScheduleForm(instance=schedule, sections_queryset=sections)
 
     return render(request, 'edit_schedule.html', {'form': form, 'schedule': schedule})
+
 
 
 @login_required

@@ -16,12 +16,14 @@
             </form>
             <hr>
             <h4>Status: {{ schedule.get_status_display }}</h4>
+            {% if schedule.status == 'active' %}
             <form method="post">
                 {% csrf_token %}
-                <button type="submit" name="toggle_status" class="btn {% if schedule.status == 'active' %}btn-danger{% else %}btn-success{% endif %}">
-                    {% if schedule.status == 'active' %}Set to Cancelled{% else %}Set to Active{% endif %}
+                <button type="submit" name="toggle_status" class="btn btn-danger">
+                    Cancel Schedule
                 </button>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>

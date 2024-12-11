@@ -77,6 +77,8 @@ class Schedule(models.Model):
     def save(self, *args, **kwargs):
         if self.pk:
             original = Schedule.objects.get(pk=self.pk)
+            if original.status == self.CANCELLED:
+                raise ValidationError("Cancelled schedules cannot be reactivated.")
             if original.status != self.status and self.status == self.CANCELLED:
                 bookings = Booking.objects.filter(schedule=self, status=Booking.PENDING)
                 for booking in bookings:
