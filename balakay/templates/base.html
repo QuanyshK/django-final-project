@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Balakay{% endblock %}</title>
+    <title>{% block title %}1Kids{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -11,9 +11,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             {% if user.partner.is_active %}
-            <a class="navbar-brand" href="{% url 'manage_schedule' %}" >Balakay</a>
+            <a class="navbar-brand" href="{% url 'manage_schedule' %}" >1Kids</a>
             {% else %}
-            <a class="navbar-brand" href="{% url 'home' %}" >Balakay</a>
+            <a class="navbar-brand" href="{% url 'home' %}" >1Kids</a>
             {% endif %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,7 +67,7 @@
     </main>
     <footer class="bg-light text-center py-3">
         <div class="container">
-            <p class="mb-0">&copy; 2024 Balakay. All rights reserved.</p>
+            <p class="mb-0">&copy; 2024 1Kids. All rights reserved.</p>
         </div>
     </footer>
 

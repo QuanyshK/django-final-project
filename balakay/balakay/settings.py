@@ -2,11 +2,21 @@ from pathlib import Path
 from datetime import timedelta
 import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure--4q=&riqhl4a!*&g@g^$ifpwk+0c)&emd^%j!ney2^s@f)z*)0')
 
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'False'
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost,0.0.0.0,balakay-web-1021550053826.asia-south1.run.app,").split(",")
 
@@ -61,7 +71,7 @@ ROOT_URLCONF = 'balakay.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,12 +111,6 @@ TIME_ZONE = 'Asia/Almaty'
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -200,5 +204,5 @@ LOGIN_REDIRECT_URL = '/merchant/schedule/'
 LOGIN_URL = '/merchant/login/'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://balakay-web-1021550053826.asia-south1.run.app',
+    'https://balakay-web-1021550053826.asia-south1.run.app', 'http://0.0.0.0:8080',
 ]

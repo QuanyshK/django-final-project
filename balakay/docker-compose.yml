@@ -1,13 +1,16 @@
+version: '3.8'
+
 services:
   web:
     build:
       context: .
     container_name: balakay_web
-    command: gunicorn --bind 0.0.0.0:8080 balakay.wsgi:application
+    command: gunicorn --bind 0.0.0.0:8000 balakay.wsgi:application
     volumes:
       - .:/app
+      - static_volume:/app/staticfiles
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
       DJANGO_SETTINGS_MODULE: balakay.settings
       DATABASE_NAME: balakay_pmuq
@@ -15,3 +18,17 @@ services:
       DATABASE_PASSWORD: Ajxf8Ybjm4zzfPvK9NfyxduvBM4R6dzX
       DATABASE_HOST: dpg-ct8vor23esus73d85j9g-a.singapore-postgres.render.com
       DATABASE_PORT: 5432
+
+  nginx:
+    image: nginx:latest
+    container_name: balakay_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - static_volume:/static
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
