@@ -4,19 +4,27 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="mb-4">Edit Schedule</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
-    <hr>
-    <h4>Status: {{ schedule.get_status_display }}</h4>
-    <form method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" name="toggle_status" class="btn {% if schedule.status == 'active' %}btn-danger{% else %}btn-success{% endif %}">
-            {% if schedule.status == 'active' %}Set to Cancelled{% else %}Set to Active{% endif %}
-        </button>
-    </form>
+    <div class="card shadow">
+        <div class="card-header bg-warning text-white">
+            <h2>Edit Schedule</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+            <hr>
+            <h4>Status: {{ schedule.get_status_display }}</h4>
+            {% if schedule.status == 'active' %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="toggle_status" class="btn btn-danger">
+                    Cancel Schedule
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

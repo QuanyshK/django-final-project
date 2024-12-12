@@ -3,23 +3,26 @@
 {% block title %}Center Profile{% endblock %}
 
 {% block content %}
-<div class="card mt-4">
-    <div class="card-header">
-        <h3>Center Profile</h3>
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3>Center Profile</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Name:</strong> {{ center.name }}</p>
+            <p><strong>Manager Name:</strong> {{ center.manager_name }}</p>
+            <p><strong>Manager Phone:</strong> {{ center.manager_phone }}</p>
+            <p><strong>City:</strong> {{ center.city }}</p>
+            <p><strong>Address:</strong> {{ center.address }}</p>
+            <p><strong>Description:</strong> {{ center.description }}</p>
+            <p><strong>Subtitle:</strong> {{ center.subtitle }}</p>
+            {% if center.logo %}
+                <p><strong>Logo:</strong></p>
+                <img src="{{ center.logo.url }}" alt="Center Logo" class="img-fluid" style="max-width: 200px;">
+            {% endif %}
+        </div>
     </div>
-    <div class="card-body">
-        <p><strong>Name:</strong> {{ center.name }}</p>
-        <p><strong>Manager Name:</strong> {{ center.manager_name }}</p>
-        <p><strong>Manager Phone:</strong> {{ center.manager_phone }}</p>
-        <p><strong>City:</strong> {{ center.city }}</p>
-        <p><strong>Address:</strong> {{ center.address }}</p>
-        <p><strong>Description:</strong> {{ center.description }}</p>
-        <p><strong>Subtitle:</strong> {{ center.subtitle }}</p>
-        {% if center.logo %}
-            <p><strong>Logo:</strong></p>
-            <img src="{{ center.logo.url }}" alt="Center Logo" class="img-fluid" style="max-width: 200px;">
-        {% endif %}
-    </div>
+    <a href="{% url 'manage_schedule' %}" class="btn btn-primary mt-3">Back to Schedule</a>
+    <a href="{% url 'logout_partner' %}" class="btn btn-danger">Logout</a>
 </div>
-<a href="{% url 'manage_schedule' %}" class="btn btn-primary mt-3">Back to Schedule</a>
 {% endblock %}

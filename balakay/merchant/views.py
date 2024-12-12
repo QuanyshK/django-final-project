@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
+from notifications.models import Notification
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -122,33 +122,17 @@ def add_schedule(request):
 
 @login_required
 def edit_schedule(request, schedule_id):
-    """
-    Редактирование расписания, включая переключение статуса.
-    """
-    try:
-        partner = request.user.partner
-        if not partner.is_active:
-            return redirect('login_partner')
-    except Partner.DoesNotExist:
-        return redirect('login_partner')
-
+    partner = request.user.partner
     sections = Section.objects.filter(center=partner.center)
     schedule = get_object_or_404(Schedule, id=schedule_id, section__in=sections)
 
     if request.method == 'POST':
-        if 'toggle_status' in request.POST:  # Обработка нажатия кнопки "Set to Active/Cancelled"
-            if schedule.status == Schedule.CANCELLED:
-                schedule.status = Schedule.ACTIVE
-            else:
-                if schedule.start_time - timezone.now() <= timedelta(hours=1):
-                    messages.error(request, "Cannot cancel schedule less than an hour before start.")
-                else:
-                    schedule.status = Schedule.CANCELLED
+        if 'toggle_status' in request.POST and schedule.status == Schedule.ACTIVE:
+            schedule.status = Schedule.CANCELLED
             schedule.save()
-            messages.success(request, f"Schedule status updated to {schedule.get_status_display()}.")
-            return redirect('edit_schedule', schedule_id=schedule_id)
+            messages.success(request, "Schedule has been cancelled and cannot be reactivated.")
+            return redirect('manage_schedule')
 
-        # Обработка сохранения формы
         form = ScheduleForm(request.POST, instance=schedule, sections_queryset=sections)
         if form.is_valid():
             form.save()
@@ -160,12 +144,36 @@ def edit_schedule(request, schedule_id):
     return render(request, 'edit_schedule.html', {'form': form, 'schedule': schedule})
 
 
+
 @login_required
 @user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
 def center_profile(request):
     partner = request.user.partner
     center = partner.center  # Предполагается, что партнер привязан к одному центру
     return render(request, 'center_profile.html', {'center': center})
+
+def create_notification(user, booking, message):
+    Notification.objects.create(user=user, booking=booking, message=message)
+
+
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'partner') and u.partner.is_active, login_url='/merchant/login/')
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, schedule__section__center=request.user.partner.center)
+
+    if booking.status == Booking.CANCELLED:
+        messages.error(request, "This booking has already been cancelled.")
+        return redirect('schedule_details', schedule_id=booking.schedule.id)
+
+    booking.status = Booking.CANCELLED
+    booking.cancelled_at = timezone.now()
+    booking.save()
+
+    message = f"Your booking for {booking.schedule.section.name} on {booking.schedule.start_time} has been cancelled by the partner."
+    create_notification(user=booking.user, booking=booking, message=message)
+
+    messages.success(request, f"Booking for {booking.child_name} successfully cancelled.")
+    return redirect('schedule_details', schedule_id=booking.schedule.id)
 
 from .serializers import SectionSerializer, ScheduleSerializer
 from rest_framework.views import APIView
@@ -204,3 +212,8 @@ class ScheduleAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from django.contrib.auth import logout
+
+def logout_partner(request):
+    logout(request)
+    return redirect('login_partner')

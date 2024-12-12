@@ -327,6 +327,7 @@ INFO 2024-11-21 13:47:00,633 signals Child created: 1 - Child One
 INFO 2024-11-21 13:47:00,634 signals Subscription created: 1 - Child: Child, Type: Basic Plan
 INFO 2024-12-02 00:35:52,237 signals Client created: 8 - zhake m
 INFO 2024-12-04 06:06:38,144 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
+<<<<<<< HEAD
 INFO 2024-12-04 09:30:11,632 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
 INFO 2024-12-04 09:30:20,548 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
 INFO 2024-12-06 00:42:30,704 signals Client created: 1 - Zhanibek Beisenov
@@ -401,3 +402,8 @@ INFO 2024-12-06 01:15:13,026 signals Child created: 9 - Test 2 Child
 INFO 2024-12-06 01:15:13,845 signals Child created: 10 - Test 3 Testuly
 INFO 2024-12-06 01:15:15,485 signals Subscription created: 12 - Child: Test, Type: 12 months / 7-16
 INFO 2024-12-06 01:15:17,123 signals Subscription created: 13 - Child: Test 2, Type: 12 months / 7-16
+=======
+INFO 2024-12-11 04:24:19,173 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
+INFO 2024-12-11 05:02:11,679 signals Subscription updated: 13 - Child: Test 2, Type: 12 months / 7-16
+INFO 2024-12-11 05:15:38,737 signals Subscription updated: 12 - Child: Test, Type: 12 months / 7-16
+>>>>>>> main

@@ -86,6 +86,7 @@ INFO 2024-12-04 06:06:08,477 signals Schedule created: 26 - Section: Gym, Start:
 INFO 2024-12-04 06:06:38,148 signals Booking created: 75 - User: test user, Section: Gym
 INFO 2024-12-04 06:06:38,150 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
 INFO 2024-12-04 06:13:34,879 signals Booking deleted: 74 - User: test user, Section: Dombyra section
+<<<<<<< HEAD
 INFO 2024-12-04 09:30:11,634 signals Booking created: 76 - User: test user, Section: Gym
 INFO 2024-12-04 09:30:11,635 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
 INFO 2024-12-04 09:30:20,536 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
@@ -185,3 +186,27 @@ INFO 2024-12-06 00:42:13,706 signals Booking created: 72 - User: test user, Sect
 INFO 2024-12-06 00:42:15,959 signals Booking created: 73 - User: test user, Section: Math for kids
 INFO 2024-12-06 00:42:18,314 signals Booking created: 75 - User: test user, Section: Gym
 INFO 2024-12-06 00:42:20,669 signals Booking created: 76 - User: test user, Section: Gym
+=======
+INFO 2024-12-11 04:22:50,107 signals Schedule created: 27 - Section: Gym, Start: 2024-12-14 04:53:00+05:00
+INFO 2024-12-11 04:24:19,174 signals Booking created: 76 - User: test user, Section: Gym
+INFO 2024-12-11 04:24:19,174 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 04:24:25,110 signals Booking updated: 75 - User: test user, Section: Gym
+INFO 2024-12-11 04:28:23,329 signals Booking updated: 76 - User: test user, Section: Gym
+INFO 2024-12-11 05:01:25,801 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-11 05:01:27,880 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-11 05:01:32,226 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:02:11,680 signals Booking created: 77 - User: test user, Section: Gym
+INFO 2024-12-11 05:02:11,681 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:02:46,937 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:02:47,780 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:05:49,909 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:05:51,900 signals Schedule updated: 27 - Section: Gym, Start: 2024-12-13 23:53:00+00:00
+INFO 2024-12-11 05:15:12,016 signals Schedule created: 28 - Section: Gym, Start: 2024-12-14 07:07:00+05:00
+INFO 2024-12-11 05:15:38,739 signals Booking created: 78 - User: test user, Section: Gym
+INFO 2024-12-11 05:15:38,741 signals Schedule updated: 28 - Section: Gym, Start: 2024-12-14 02:07:00+00:00
+INFO 2024-12-11 05:16:00,939 signals Booking updated: 78 - User: test user, Section: Gym
+INFO 2024-12-11 05:16:00,958 signals Schedule updated: 28 - Section: Gym, Start: 2024-12-14 02:07:00+00:00
+INFO 2024-12-11 05:23:14,423 signals Schedule updated: 18 - Section: Dombyra section, Start: 2024-12-04 15:46:30+00:00
+INFO 2024-12-11 05:23:17,974 signals Schedule updated: 16 - Section: Gym, Start: 2024-12-03 19:16:56+00:00
+INFO 2024-12-11 05:23:34,032 signals Schedule updated: 26 - Section: Gym, Start: 2024-12-04 10:07:00+00:00
+>>>>>>> main

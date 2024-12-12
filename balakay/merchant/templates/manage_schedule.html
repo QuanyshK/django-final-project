@@ -3,17 +3,14 @@
 {% block title %}Manage Schedules{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1 class="mb-4">Manage Schedules</h1>
-
-    <div class="text-end mb-3">
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage Schedules</h1>
         <a href="{% url 'add_schedule' %}" class="btn btn-success">Add Schedule</a>
     </div>
-
     {% if schedules %}
-    <!-- # Check if the schedules variable contains any schedule objects # -->
-        <table class="table table-bordered table-striped">
-            <thead class="thead-light">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-light">
                 <tr>
                     <th>#</th>
                     <th>Section</th>
@@ -25,7 +22,6 @@
             </thead>
             <tbody>
                 {% for schedule in schedules %}
-          <!-- {# Loop through each schedule in the schedules list #} -->
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ schedule.section.name }}</td>
@@ -41,8 +37,7 @@
             </tbody>
         </table>
     {% else %}
-    <!-- {# Message displayed if no schedules are available #} -->
-        <p class="text-muted">No schedules found. Click "Add Schedule" to create one.</p>
+        <div class="alert alert-info">No schedules found. Click "Add Schedule" to create one.</div>
     {% endif %}
 </div>
 {% endblock %}
